@@ -4,7 +4,12 @@ from rich.prompt import IntPrompt, Prompt
 
 from modules.console import console
 from modules.player import get_player_avatar
-from modules.pokemon import get_species_by_name, StatsValues
+from modules.pokemon import (
+    get_species_by_name,
+    StatsValues,
+    _species_by_name,
+    _natures_by_name,
+)
 from ._asserts import assert_player_has_poke_balls, assert_boxes_or_party_can_fit_pokemon
 from ._interface import BotMode, BattleAction, BotModeError
 from .util import apply_white_flute_if_available, spin
@@ -23,13 +28,16 @@ class IVWildMode(BotMode):
         super().__init__()
         self._target_species = None
         self._min_ivs = StatsValues(0, 0, 0, 0, 0, 0)
+        self._allowed_natures: set[str] | None = None
 
     def _ask_parameters(self) -> None:
-        species_name = Prompt.ask("¿Qué especie de Pokémon deseas buscar?")
-        try:
-            self._target_species = get_species_by_name(species_name)
-        except KeyError as e:
-            raise BotModeError(f"Species '{species_name}' not found") from e
+        species_name = Prompt.ask("¿Qué especie de Pokémon deseas buscar?").strip()
+        for name in _species_by_name:
+            if name.lower() == species_name.lower():
+                self._target_species = get_species_by_name(name)
+                break
+        else:
+            raise BotModeError(f"Species '{species_name}' not found")
 
         self._min_ivs = StatsValues(
             hp=IntPrompt.ask("IV mínimo HP", default=0),
@@ -39,6 +47,24 @@ class IVWildMode(BotMode):
             special_defence=IntPrompt.ask("IV mínimo SPDEF", default=0),
             speed=IntPrompt.ask("IV mínimo SPD", default=0),
         )
+
+        nature_str = Prompt.ask(
+            "¿Qué naturaleza o naturalezas deseas?",
+            default="Any",
+        ).strip()
+        if nature_str.lower() == "any":
+            self._allowed_natures = None
+        else:
+            natures = {n.strip().lower() for n in nature_str.split(",") if n.strip()}
+            resolved: set[str] = set()
+            for nature_input in natures:
+                for name in _natures_by_name:
+                    if name.lower() == nature_input:
+                        resolved.add(name.lower())
+                        break
+                else:
+                    raise BotModeError(f"Naturaleza '{nature_input}' no encontrada")
+            self._allowed_natures = resolved
 
     def on_battle_started(self, encounter) -> BattleAction | None:
         if self._target_species is None:
@@ -50,6 +76,9 @@ class IVWildMode(BotMode):
         )
         if pokemon.species != self._target_species:
             console.print("⛔ Huir por especie.")
+            return BattleAction.RunAway
+        if self._allowed_natures is not None and pokemon.nature.name.lower() not in self._allowed_natures:
+            console.print(f"⛔ Huir por naturaleza ({pokemon.nature.name})")
             return BattleAction.RunAway
         checks = [
             ("hp", ivs.hp, self._min_ivs.hp),
@@ -63,7 +92,10 @@ class IVWildMode(BotMode):
             if threshold > 0 and value < threshold:
                 console.print("❌ Huir por IVs")
                 return BattleAction.RunAway
-        console.print("✅ Captura")
+        if self._allowed_natures is None:
+            console.print("✅ Captura")
+        else:
+            console.print(f"✅ Captura (Cumple con naturaleza: {pokemon.nature.name})")
         return BattleAction.Catch
 
     def run(self) -> Generator:
