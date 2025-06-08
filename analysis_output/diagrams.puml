@@ -1,0 +1,2809 @@
+@startuml class_diagram
+package . {
+  class FunctionInfo {
+  }
+  class ClassInfo {
+  }
+  class ModuleInfo {
+  }
+}
+package . {
+  class StartupSettings {
+  }
+}
+package . {
+}
+package . {
+  class ReleaseInfo {
+  }
+}
+package modules {
+}
+package modules {
+}
+package modules {
+}
+package modules {
+}
+package modules {
+  class LearnMoveState {
+  }
+}
+package modules {
+  class Weather {
+  }
+  class BattleType {
+  }
+  class TemporaryStatus {
+    +from_bitfield()
+  }
+  class StatsModifiers {
+    +from_bytes()
+  }
+  class BattleState {
+    +battling_pokemon()
+    +type()
+    +is_double_battle()
+    +is_double_battle_with_partner()
+    +is_trainer_battle()
+    +is_safari_zone_encounter()
+    +own_side()
+    +opponent()
+    +current_turn()
+    +weather()
+    +type_names()
+    +map_battle_party_index()
+  }
+  class BattleSideTimer {
+  }
+  class BattleStateSide {
+    +active_battlers()
+    +left_battler()
+    +right_battler()
+    +active_battler()
+    +partner_for()
+    +reflect_timer()
+    +lightscreen_timer()
+    +mist_timer()
+    +safeguard_timer()
+    +follow_me_timer()
+    +spikes_amount()
+    +is_fainted()
+    +has_ability()
+  }
+  class BattlePokemon {
+    +species()
+    +stats()
+    +ivs()
+    +moves()
+    +knows_move()
+    +is_egg()
+    +ability()
+    +ability_n()
+    +types()
+    +stats_modifiers()
+    +modified_stats()
+    +current_hp()
+    +current_hp_percentage()
+    +total_hp()
+    +level()
+    +friendship()
+    +held_item()
+    +total_exp()
+    +personality_value()
+    +hidden_power_type()
+    +hidden_power_damage()
+    +status_permanent()
+    +status_temporary()
+    +ot_id()
+    +disabled_move()
+    +transformed_personality_value()
+    +encored_move()
+    +protect_uses()
+    +stockpile_counter()
+    +substitute_hp()
+    +disabled_turns_remaining()
+    +encore_turns_remaining()
+    +perish_song_turns_remaining()
+    +fury_cutter_counter()
+    +rollout_turns_remaining()
+    +charge_turns_remaining()
+    +taunt_turns_remaining()
+    +battler_preventing_escape()
+    +battler_with_sure_hit()
+    +is_first_turn()
+    +is_loafing_around()
+    +truant_switch_in_hack()
+    +mimicked_moves()
+    +recharge_turns_remaining()
+  }
+  class BattleOutcome {
+  }
+  class EncounterType {
+    +is_wild()
+    +is_fishing()
+    +verb()
+  }
+}
+package modules {
+  class ClockTime {
+  }
+  class PlayTime {
+  }
+}
+package modules {
+}
+package modules {
+  class BotContext {
+    +reload_config()
+    +message()
+    +message()
+    +emulation_speed()
+    +emulation_speed()
+    +bot_mode()
+    +bot_mode()
+    +toggle_manual_mode()
+    +set_manual_mode()
+    +debug_stepping_mode()
+    +audio()
+    +audio()
+    +toggle_audio()
+    +video()
+    +video()
+    +toggle_video()
+    +rom()
+  }
+}
+package modules {
+  class DaycareCompatibility {
+    +calculate_for()
+  }
+  class DaycareData {
+  }
+}
+package modules {
+  class DebugUtil {
+    +reset()
+    +track()
+  }
+}
+package modules {
+}
+package modules {
+  class DiscordMessageEmbed {
+  }
+  class DiscordMessage {
+  }
+}
+package modules {
+  class EncounterInfo {
+    +create()
+    +is_shiny()
+    +is_of_interest()
+  }
+  class EncounterValue {
+    +is_of_interest()
+  }
+}
+package modules {
+  class PrettyException {
+    +bare_message()
+  }
+  class PrettyValueError {
+  }
+  class CriticalDirectoryMissing {
+  }
+  class CriticalFileMissing {
+  }
+  class InvalidConfigData {
+  }
+}
+package modules {
+}
+package modules {
+}
+package modules {
+  class FishingRod {
+  }
+  class FishingResult {
+  }
+  class FishingAttempt {
+    +to_dict()
+  }
+}
+package modules {
+}
+package modules {
+  class GameSprite {
+    +coordinates()
+    +secondary_coordinates()
+    +center_to_corner_vector()
+    +flags()
+    +data_value()
+  }
+}
+package modules {
+  class GameStat {
+  }
+}
+package modules {
+  class ItemType {
+    +from_value()
+  }
+  class ItemPocket {
+    +rse_index()
+    +frlg_index()
+    +index()
+    +capacity()
+  }
+  class ItemBattleUse {
+    +from_value()
+  }
+  class ItemFieldUse {
+    +from_value()
+  }
+  class ItemHoldEffect {
+    +from_value()
+  }
+  class Item {
+    +tm_hm_move()
+    +from_dict()
+  }
+  class PokeblockColour {
+  }
+  class PokeblockType {
+  }
+  class Pokeblock {
+    +level()
+    +type()
+  }
+  class ItemSlot {
+    +to_dict()
+  }
+  class ItemBag {
+    +items()
+    +key_items()
+    +poke_balls()
+    +tms_hms()
+    +berries()
+    +has_space_for()
+    +pocket_for()
+    +quantity_of()
+    +first_slot_index_for()
+    +number_of_repels()
+    +number_of_balls_except_master_ball()
+    +to_dict()
+  }
+  class ItemStorage {
+    +items()
+    +has_space_for()
+    +first_slot_index_for()
+    +quantity_of()
+    +to_list()
+  }
+}
+package modules {
+  class KeyboardLayout {
+    +valid_characters()
+    +strip_invalid_characters()
+  }
+  class KeyboardPage {
+    +from_data()
+    +characters()
+    +character_position()
+  }
+  class KeyboardPageType {
+  }
+  class NamingScreenState {
+  }
+  class NamingScreen {
+  }
+}
+package modules {
+  class PerformanceTracker {
+    +track_render()
+    +time_since_last_render()
+    +track_frame()
+    +time_since_last_frame()
+  }
+  class LibmgbaEmulator {
+    +reset()
+    +create_save_state()
+    +shutdown()
+    +backup_current_save_game()
+    +get_frame_count()
+    +get_image_dimensions()
+    +get_current_fps()
+    +get_current_time_spent_in_bot_fraction()
+    +get_video_enabled()
+    +set_video_enabled()
+    +get_audio_enabled()
+    +set_audio_enabled()
+    +get_throttle()
+    +set_throttle()
+    +get_speed_factor()
+    +set_speed_factor()
+    +get_save_state()
+    +load_save_state()
+    +load_save_game()
+    +read_save_data()
+    +read_bytes()
+    +write_bytes()
+    +get_inputs()
+    +set_inputs()
+    +press_button()
+    +hold_button()
+    +is_button_held()
+    +release_button()
+    +reset_held_buttons()
+    +restore_held_buttons()
+    +get_current_screen_image()
+    +get_screenshot()
+    +take_screenshot()
+    +get_last_audio_data()
+    +get_sample_rate()
+    +peek_frame()
+    +run_single_frame()
+    +get_task_look_ahead()
+  }
+}
+package modules {
+  class ManualBotMode {
+    +name()
+    +run()
+  }
+}
+package modules {
+  class MapConnection {
+    +direction()
+    +offset()
+    +destination_map_group()
+    +destination_map_number()
+    +destination_map()
+    +to_dict()
+  }
+  class MapWarp {
+    +local_coordinates()
+    +elevation()
+    +destination_warp_id()
+    +destination_map_group()
+    +destination_map_number()
+    +destination_location()
+    +to_dict()
+  }
+  class MapCoordEvent {
+    +type()
+    +local_coordinates()
+    +elevation()
+    +trigger_var_number()
+    +trigger_value()
+    +script_pointer()
+    +script_symbol()
+    +weather()
+    +to_dict()
+  }
+  class MapBgEvent {
+    +local_coordinates()
+    +elevation()
+    +kind()
+    +player_facing_direction()
+    +script_pointer()
+    +script_symbol()
+    +hidden_item()
+    +hidden_item_flag_id()
+    +secret_base_id()
+    +to_dict()
+  }
+  class MapLocation {
+    +map_group_and_number()
+    +map_name()
+    +map_size()
+    +map_type()
+    +weather()
+    +tile_type()
+    +collision()
+    +elevation()
+    +has_encounters()
+    +is_surfable()
+    +is_cycling_possible()
+    +is_escaping_possible()
+    +is_running_possible()
+    +is_map_name_popup_shown()
+    +is_dark_cave()
+    +connections()
+    +warps()
+    +objects()
+    +object_by_local_id()
+    +coord_events()
+    +bg_events()
+    +all_tiles()
+    +dict_for_map()
+    +dict_for_tile()
+    +dicts_for_all_tiles()
+  }
+  class ObjectEvent {
+    +flags()
+    +sprite_id()
+    +graphics_id()
+    +movement_type()
+    +trainer_type()
+    +local_id()
+    +map_num()
+    +map_group()
+    +map_group_and_number()
+    +current_elevation()
+    +previous_elevation()
+    +initial_coords()
+    +current_coords()
+    +previous_coords()
+    +facing_direction()
+    +facing_coordinates()
+    +movement_direction()
+    +range_x()
+    +range_y()
+    +field_effect_sprite_id()
+    +warp_arrow_sprite_id()
+    +movement_action()
+    +trainer_range_berry_tree_id()
+    +current_metatile_behaviour()
+    +previous_metatile_behaviour()
+    +previous_movement_direction()
+    +direction_sequence_index()
+    +player_copyable_movement()
+    +object_event_template()
+  }
+  class ObjectEventTemplate {
+    +local_id()
+    +graphics_id()
+    +kind()
+    +local_coordinates()
+    +elevation()
+    +movement_type()
+    +movement_range()
+    +trainer_type()
+    +trainer_range()
+    +is_trainer_defeated()
+    +berry_tree_id()
+    +script_pointer()
+    +script_symbol()
+    +flag_id()
+    +clone_target_local_id()
+    +clone_target_map_group()
+    +clone_target_map_number()
+    +clone_target_map()
+    +to_dict()
+  }
+  class WildEncounter {
+    +to_dict()
+  }
+  class WildEncounterList {
+    +empty()
+    +to_dict()
+  }
+  class EffectiveWildEncounter {
+    +to_dict()
+  }
+  class EffectiveWildEncounterList {
+    +for_type()
+    +to_dict()
+  }
+}
+package modules {
+  class MapGroupFRLG {
+    +maps()
+  }
+  class MapFRLG {
+    +exists_on_rs()
+    +pretty_name()
+  }
+  class MapGroupRSE {
+    +maps()
+  }
+  class MapRSE {
+    +exists_on_rs()
+    +pretty_name()
+  }
+  class PokemonCenter {
+  }
+}
+package modules {
+  class Direction {
+    +opposite()
+    +button_name()
+    +from_string()
+  }
+  class PathTile {
+    +global_coordinates()
+  }
+  class PathMap {
+    +tiles()
+    +get_tile()
+    +get_global_tile()
+    +contains_global_coordinates()
+  }
+  class PathFindingError {
+  }
+  class PathNode {
+  }
+  class WaypointAction {
+  }
+  class Waypoint {
+    +walking_direction()
+  }
+}
+package modules {
+}
+package modules {
+  class GameState {
+  }
+}
+package modules {
+  class BaseMenuNavigator {
+    +step()
+    +get_next_func()
+    +update_navigator()
+  }
+  class StartMenuNavigator {
+    +update_start_menu()
+    +get_next_func()
+    +update_navigator()
+    +open_start_menu()
+    +navigate_to_option()
+    +confirm_option()
+  }
+  class PokemonPartySubMenuNavigator {
+    +update_party_menu()
+    +wait_for_init()
+    +get_index_from_option()
+    +select_desired_option()
+    +confirm_desired_option()
+    +get_next_func()
+    +update_navigator()
+  }
+  class PokemonPartyMenuNavigator {
+    +get_primary_option()
+    +get_next_func()
+    +update_navigator()
+    +navigate_to_mon()
+    +navigate_to_lead()
+    +select_summary()
+    +select_mon()
+    +switch_mon()
+    +select_option()
+    +select_switch()
+    +select_take_item()
+    +select_give_item()
+  }
+  class BattlePartyMenuNavigator {
+    +get_next_func()
+    +select_mon()
+    +select_option()
+  }
+  class CheckForPickup {
+    +get_pokemon_with_pickup_and_item()
+    +check_pickup_threshold()
+    +open_party_menu()
+    +return_to_party_menu()
+    +should_open_party_menu()
+    +check_space_in_bag()
+    +get_next_func()
+    +get_next_mon()
+    +update_navigator()
+  }
+  class PartyMenuExit {
+    +get_next_func()
+    +update_navigator()
+    +exit_menu()
+    +wait_for_start_menu()
+  }
+  class MenuWrapper {
+    +step()
+  }
+  class RotatePokemon {
+    +get_next_func()
+    +update_navigator()
+    +select_replacement()
+  }
+}
+package modules {
+  class CursorOptionFRLG {
+  }
+  class CursorOptionEmerald {
+  }
+  class CursorOptionRS {
+  }
+  class StartMenuOptionHoenn {
+  }
+  class StartMenuOptionKanto {
+  }
+}
+package modules {
+  class AvatarFlags {
+  }
+  class RunningState {
+  }
+  class TileTransitionState {
+  }
+  class AcroBikeState {
+  }
+  class FacingDirection {
+  }
+  class PlayerAvatar {
+    +map_group_and_number()
+    +map_location()
+    +map_location_in_front()
+    +local_coordinates()
+    +flags()
+    +is_on_bike()
+    +is_in_water()
+    +running_state()
+    +tile_transition_state()
+    +acro_bike_state()
+    +facing_direction()
+    +to_dict()
+  }
+  class Player {
+    +name()
+    +gender()
+    +trainer_id()
+    +secret_id()
+    +money()
+    +coins()
+    +registered_item()
+    +to_dict()
+  }
+}
+package modules {
+  class WithdrawItemNavigator {
+    +get_next_func()
+    +update_navigator()
+    +withdraw_item()
+    +scroll_to_item()
+  }
+  class DepositItemNavigator {
+    +get_next_func()
+    +update_navigator()
+    +deposit_item()
+    +scroll_to_item()
+  }
+}
+package modules {
+}
+package modules {
+  class BotPlugin {
+    +get_additional_bot_modes()
+    +get_additional_bot_listeners()
+    +on_profile_loaded()
+    +on_config_reload()
+    +on_battle_started()
+    +on_wild_encounter_visible()
+    +on_battle_ended()
+    +on_logging_encounter()
+    +on_pokemon_evolved()
+    +on_egg_starting_to_hatch()
+    +on_egg_hatched()
+    +on_whiteout()
+    +on_judge_encounter()
+    +on_should_nickname_pokemon()
+  }
+}
+package modules {
+  class Pokedex {
+    +is_national_dex_enabled()
+    +seen_species()
+    +owned_species()
+    +to_dict()
+  }
+}
+package modules {
+  class Type {
+    +set_effectiveness()
+    +get_effectiveness_against()
+    +is_physical()
+    +is_special()
+    +kind()
+    +safe_name()
+  }
+  class Move {
+    +from_dict()
+  }
+  class LearnedMove {
+    +create()
+    +added_pps()
+  }
+  class StatsValues {
+    +from_dict()
+    +calculate()
+    +sum()
+  }
+  class ContestConditions {
+  }
+  class HeldItem {
+  }
+  class Nature {
+    +name_with_modifiers()
+    +from_dict()
+  }
+  class Ability {
+    +from_dict()
+  }
+  class LevelUpType {
+    +get_experience_needed_for_level()
+    +get_level_from_total_experience()
+  }
+  class SpeciesLevelUpMove {
+  }
+  class SpeciesTmHmMove {
+    +debug_dict_value()
+  }
+  class SpeciesMoveLearnset {
+    +debug_dict_value()
+    +from_dict()
+  }
+  class Species {
+    +has_type()
+    +can_learn_tm_hm()
+    +to_dict()
+    +from_dict()
+  }
+  class OriginalTrainer {
+  }
+  class Marking {
+    +from_bitfield()
+  }
+  class StatusCondition {
+    +from_bitfield()
+    +to_bitfield()
+  }
+  class PokerusStatus {
+  }
+  class Pokemon {
+    +calculate_checksum()
+    +get_data_checksum()
+    +is_valid()
+    +is_empty()
+    +personality_value()
+    +original_trainer()
+    +nickname()
+    +name()
+    +language()
+    +is_egg()
+    +markings()
+    +species()
+    +held_item()
+    +total_exp()
+    +friendship()
+    +move()
+    +moves()
+    +knows_move()
+    +evs()
+    +ivs()
+    +contest_conditions()
+    +pokerus_status()
+    +ability()
+    +poke_ball()
+    +game_of_origin()
+    +level_met()
+    +location_met()
+    +level()
+    +exp_needed_until_next_level()
+    +exp_fraction_to_next_level()
+    +sleep_duration()
+    +status_condition()
+    +stats()
+    +total_hp()
+    +current_hp()
+    +current_hp_percentage()
+    +nature()
+    +gender()
+    +shiny_value()
+    +is_shiny()
+    +is_anti_shiny()
+    +hidden_power_type()
+    +hidden_power_damage()
+    +unown_letter()
+    +wurmple_evolution()
+    +species_name_for_stats()
+    +to_dict()
+  }
+}
+package modules {
+  class PartyPokemon {
+  }
+  class Party {
+    +contains_eggs()
+    +eggs()
+    +non_eggs()
+    +non_fainted_pokemon()
+    +first_non_fainted()
+    +has_pokemon_with_move()
+    +first_pokemon_with_move()
+    +has_pokemon_with_ability()
+    +first_pokemon_with_ability()
+    +to_list()
+  }
+}
+package modules {
+  class PokemonStorageSlot {
+    +row()
+    +column()
+    +to_dict()
+  }
+  class PokemonStorageBox {
+    +first_empty_slot_index()
+    +to_dict()
+  }
+  class PokemonStorage {
+    +active_box_index()
+    +active_box()
+    +boxes()
+    +pokemon_count()
+    +contains_species()
+    +contains_pokemon()
+    +to_dict()
+  }
+}
+package modules {
+  class PCMainMenuNavigator {
+    +get_next_func()
+    +update_navigator()
+    +wait_for_pc()
+    +navigate_to_option()
+    +confirm_option()
+  }
+  class MenuNavigator {
+    +get_next_func()
+    +update_navigator()
+    +wait_for_menu()
+    +select_yes()
+    +navigate_to_option()
+    +confirm_option()
+  }
+  class BoxNavigator {
+    +get_next_func()
+    +update_navigator()
+    +wait_for_box()
+    +navigate_to_pos()
+    +confirm_option()
+    +select_sub_option()
+  }
+  class StorageCursor {
+    +box_mode_enabled()
+    +current_box()
+    +menu_cur_pos()
+    +box_cur_pos()
+  }
+}
+package modules {
+  class Profile {
+  }
+}
+package modules {
+  class FlyDestinationRSE {
+    +get_flag_name()
+    +get_map_region()
+  }
+  class FlyDestinationFRLG {
+    +get_flag_name()
+    +get_map_region()
+  }
+}
+package modules {
+  class Roamer {
+    +map_group_and_number()
+    +map_name()
+    +species()
+    +ivs()
+    +contest_conditions()
+    +current_hp()
+    +level()
+    +status_condition()
+    +personality_value()
+    +nature()
+    +gender()
+    +shiny_value()
+    +is_shiny()
+    +is_anti_shiny()
+    +hidden_power_type()
+    +hidden_power_damage()
+  }
+}
+package modules {
+  class ROMLanguage {
+  }
+  class ROM {
+    +short_game_name()
+    +is_rse()
+    +is_rs()
+    +is_emerald()
+    +is_ruby()
+    +is_sapphire()
+    +is_frlg()
+    +is_fr()
+    +is_lg()
+    +is_crystal()
+    +is_gold()
+    +is_silver()
+    +is_gs()
+    +is_gen3()
+    +is_gen2()
+    +id()
+  }
+  class InvalidROMError {
+  }
+}
+package modules {
+}
+package modules {
+  class SafariHuntingMode {
+  }
+  class SafariHuntingObject {
+  }
+  class PokeblockState {
+  }
+  class SafariCatchingLocation {
+    +is_available()
+  }
+  class SafariPokemon {
+    +is_leaf_green()
+    +is_fire_red()
+    +available_pokemon()
+  }
+  class SafariPokemonRSE {
+    +emerald_and_elite_four_defeated()
+    +available_pokemon()
+  }
+  class FRLGSafariStrategy {
+    +get_strategy_file()
+    +convert_action_to_turn_action()
+  }
+  class RSESafariStrategy {
+    +should_start_pokeblock_strategy()
+  }
+}
+package modules {
+  class SaveData {
+    +get_player()
+    +get_player_map_object()
+    +get_map_group_and_number()
+    +get_map_local_coordinates()
+    +get_save_block()
+    +get_event_flag()
+    +get_event_var()
+    +get_party()
+    +get_pokemon_storage()
+    +get_item_bag()
+  }
+}
+package modules {
+  class MigrationError {
+  }
+}
+package modules {
+}
+package modules {
+  class StateCacheItem {
+    +value()
+    +value()
+    +age_in_seconds()
+    +age_in_frames()
+    +checked()
+  }
+  class StateCache {
+    +party()
+    +party()
+    +opponent()
+    +opponent()
+    +fishing_attempt()
+    +fishing_attempt()
+    +player()
+    +player()
+    +player_avatar()
+    +player_avatar()
+    +pokedex()
+    +pokedex()
+    +pokemon_storage()
+    +pokemon_storage()
+    +effective_wild_encounters()
+    +effective_wild_encounters()
+    +item_bag()
+    +item_bag()
+    +item_storage()
+    +item_storage()
+    +tasks()
+    +tasks()
+    +global_script_context()
+    +global_script_context()
+    +immediate_script_context()
+    +immediate_script_context()
+    +game_state()
+    +game_state()
+    +last_encounter_log()
+    +last_encounter_log()
+    +last_shiny_log()
+    +last_shiny_log()
+    +battle_state()
+    +battle_state()
+  }
+}
+package modules {
+  class StatsDatabaseSchemaTooNew {
+  }
+  class BaseData {
+  }
+  class SpeciesRecord {
+    +from_row_values()
+    +create()
+    +is_same_species()
+    +copy()
+    +species_id_for_database()
+    +species_name()
+    +to_dict()
+  }
+  class Encounter {
+    +from_row_data()
+    +species_id()
+    +species_name()
+    +is_shiny()
+    +iv_sum()
+    +shiny_value()
+    +data()
+    +to_dict()
+  }
+  class ShinyPhase {
+    +from_row_data()
+    +create()
+    +update()
+    +update_fishing_attempt()
+    +update_snapshot()
+    +to_dict()
+  }
+  class EncounterSummary {
+    +create()
+    +update()
+    +update_outcome()
+    +is_same_species()
+    +species_id_for_database()
+    +species_name()
+    +to_dict()
+  }
+  class EncounterTotals {
+    +from_summaries()
+    +to_dict()
+  }
+  class PickupItem {
+  }
+  class GlobalStats {
+    +totals()
+    +species()
+    +to_dict()
+  }
+  class StatsDatabase {
+    +set_data()
+    +get_data()
+    +log_encounter()
+    +clear_current_shiny_phase()
+    +reset_shiny_phase()
+    +log_end_of_battle()
+    +log_pickup_items()
+    +log_fishing_attempt()
+    +log_pokenav_call()
+    +get_global_stats()
+    +get_encounter_log()
+    +get_shiny_phase_by_shiny()
+    +get_shiny_log()
+    +query_encounters()
+    +count_encounters()
+  }
+}
+package modules {
+}
+package modules {
+  class Task {
+    +function_pointer()
+    +symbol()
+    +priority()
+    +data()
+    +data_value()
+  }
+  class TaskList {
+  }
+  class ScriptContext {
+    +is_active()
+    +mode()
+    +stack_depth()
+    +comparison_result()
+    +native_pointer()
+    +native_function_name()
+    +bytecode_pointer()
+    +script_function_name()
+    +stack_pointers()
+    +stack()
+    +data()
+  }
+}
+package modules {
+}
+package modules {
+  class TextPrinterState {
+  }
+  class TextPrinter {
+    +from_rs_window_struct()
+    +from_emerald_frlg_text_printer_struct()
+  }
+}
+package modules {
+}
+package modules.battle_strategies {
+  class CatchStrategy {
+    +pokemon_can_battle()
+    +should_flee_after_faint()
+    +decide_turn()
+    +decide_turn_in_double_battle()
+    +decide_turn_in_safari_zone()
+  }
+}
+package modules.battle_strategies {
+  class DefaultBattleStrategy {
+    +party_can_battle()
+    +pokemon_can_battle()
+    +which_move_should_be_replaced()
+    +should_allow_evolution()
+    +should_flee_after_faint()
+    +choose_new_lead_after_faint()
+    +choose_new_lead_after_battle()
+    +decide_turn()
+    +decide_turn_in_double_battle()
+    +decide_turn_in_safari_zone()
+  }
+}
+package modules.battle_strategies {
+  class ItemStealingBattleStrategy {
+    +party_can_battle()
+    +decide_turn()
+    +choose_new_lead_after_battle()
+    +choose_new_lead_after_faint()
+  }
+}
+package modules.battle_strategies {
+  class LevelBalancingBattleStrategy {
+    +party_can_battle()
+    +choose_new_lead_after_faint()
+    +choose_new_lead_after_battle()
+    +decide_turn()
+  }
+}
+package modules.battle_strategies {
+  class LevelUpLeadBattleStrategy {
+    +choose_new_lead_after_battle()
+    +decide_turn()
+    +choose_new_lead_after_faint()
+    +party_can_battle()
+    +pokemon_can_battle()
+    +party_can_battle()
+  }
+}
+package modules.battle_strategies {
+  class LoseOnPurposeBattleStrategy {
+    +party_can_battle()
+    +pokemon_can_battle()
+    +which_move_should_be_replaced()
+    +should_allow_evolution()
+    +should_flee_after_faint()
+    +choose_new_lead_after_battle()
+    +choose_new_lead_after_faint()
+    +decide_turn()
+    +decide_turn_in_double_battle()
+  }
+}
+package modules.battle_strategies {
+  class RunAwayStrategy {
+    +should_flee_after_faint()
+    +choose_new_lead_after_battle()
+    +decide_turn()
+    +decide_turn_in_safari_zone()
+  }
+}
+package modules.battle_strategies {
+  class BattleStrategy {
+    +party_can_battle()
+    +pokemon_can_battle()
+    +which_move_should_be_replaced()
+    +should_allow_evolution()
+    +should_flee_after_faint()
+    +choose_new_lead_after_battle()
+    +choose_new_lead_after_faint()
+    +decide_turn()
+    +decide_turn_in_double_battle()
+    +decide_turn_in_safari_zone()
+  }
+  class TurnAction {
+    +use_move()
+    +use_move_against_left_side_opponent()
+    +use_move_against_right_side_opponent()
+    +use_move_against_partner()
+    +rotate_lead()
+    +use_item()
+    +use_item_on()
+    +run_away()
+    +switch_to_manual()
+  }
+  class SafariTurnAction {
+    +throw_ball()
+    +pokeblock()
+    +go_near()
+    +bait()
+    +rock()
+    +run_away()
+    +switch_to_manual()
+  }
+}
+package modules.battle_strategies {
+  class DamageRange {
+  }
+  class BattleStrategyUtil {
+    +get_escape_chance()
+    +get_best_escape_method()
+    +can_switch()
+    +calculate_move_damage_range()
+    +get_strongest_move_against()
+    +calculate_catch_success_chance()
+    +get_potential_rotation_targets()
+    +select_rotation_target()
+    +move_is_usable()
+    +pokemon_has_enough_hp()
+  }
+}
+package modules.battle_strategies {
+}
+package modules.built_in_plugins {
+  class DiscordPlugin {
+    +on_profile_loaded()
+    +on_logging_encounter()
+  }
+}
+package modules.built_in_plugins {
+  class GifGeneratorListener {
+    +handle_frame()
+    +save_gif()
+  }
+  class GenerateEncounterMediaPlugin {
+    +on_battle_started()
+    +on_wild_encounter_visible()
+    +on_battle_ended()
+    +on_egg_starting_to_hatch()
+    +on_egg_hatched()
+  }
+}
+package modules.built_in_plugins {
+  class OBSPlugin {
+    +on_profile_loaded()
+    +on_wild_encounter_visible()
+    +on_logging_encounter()
+  }
+}
+package modules.config {
+  class Battle {
+  }
+  class CatchBlock {
+  }
+  class Cheats {
+  }
+  class Discord {
+    +is_anything_enabled()
+  }
+  class DiscordWebhook {
+  }
+  class Keys {
+  }
+  class KeysEmulator {
+  }
+  class KeysGBA {
+  }
+  class Logging {
+  }
+  class LoggingSavePK3 {
+  }
+  class HTTP {
+  }
+  class OBS {
+  }
+  class OBSWebsocket {
+  }
+  class HTTPServer {
+  }
+  class ProfileMetadata {
+  }
+  class ProfileMetadataROM {
+  }
+}
+package modules.config {
+  class Config {
+    +load()
+    +save()
+    +reload_file()
+    +save_file()
+  }
+}
+package modules.config.templates {
+}
+package modules.data {
+}
+package modules.data {
+}
+package modules.data.event_flags {
+}
+package modules.data.event_vars {
+}
+package modules.data.symbols {
+}
+package modules.gui {
+  class CreateProfileScreen {
+    +enable()
+    +disable()
+  }
+}
+package modules.gui {
+  class ItemBagEditMenu {
+    +loop()
+    +close_window()
+  }
+  class ItemPocketFrame {
+    +to_list()
+  }
+}
+package modules.gui {
+  class PartyEditMenu {
+    +loop()
+    +close_window()
+  }
+  class PokemonEditFrame {
+    +to_pokemon()
+  }
+}
+package modules.gui {
+  class PokedexEditMenu {
+    +loop()
+    +close_window()
+  }
+}
+package modules.gui {
+  class InfiniteRepelListener {
+    +handle_frame()
+  }
+  class InfiniteSafariZoneListener {
+    +handle_frame()
+  }
+  class ForceShinyEncounterListener {
+    +handle_frame()
+  }
+  class DebugMenu {
+  }
+}
+package modules.gui {
+  class FancyTreeview {
+    +update_data()
+  }
+  class MapViewer {
+    +update()
+  }
+  class TasksTab {
+    +draw()
+    +update()
+  }
+  class BattleTab {
+    +draw()
+    +update()
+  }
+  class SymbolsTab {
+    +draw()
+    +update()
+  }
+  class PlayerTab {
+    +draw()
+    +update()
+  }
+  class MiscTab {
+    +draw()
+    +update()
+  }
+  class EventFlagsTab {
+    +draw()
+    +update()
+  }
+  class EventVarsTab {
+    +draw()
+    +update()
+  }
+  class EmulatorTab {
+    +draw()
+    +update()
+  }
+  class MapTab {
+    +draw()
+    +update()
+    +on_video_output_click()
+  }
+}
+package modules.gui {
+}
+package modules.gui {
+  class EmulatorControls {
+    +get_additional_width()
+    +get_additional_height()
+    +add_to_window()
+    +remove_from_window()
+    +update()
+    +on_frame_render()
+    +on_video_output_click()
+  }
+  class DebugTab {
+    +draw()
+    +update()
+    +on_video_output_click()
+  }
+  class DebugEmulatorControls {
+    +get_additional_width()
+    +add_to_window()
+    +add_tab()
+    +on_frame_render()
+    +on_video_output_click()
+    +on_tab_change()
+    +remove_from_window()
+  }
+}
+package modules.gui {
+  class EmulatorScreen {
+    +enable()
+    +disable()
+    +update()
+    +on_settings_updated()
+    +scale()
+    +scale()
+    +toggle_stepping_mode()
+  }
+}
+package modules.gui {
+}
+package modules.gui {
+  class PokebotHeadless {
+    +run()
+    +on_settings_updated()
+  }
+}
+package modules.gui {
+  class LoadStateWindow {
+    +focus()
+  }
+}
+package modules.gui {
+  class Selection {
+  }
+}
+package modules.gui {
+  class SelectProfileScreen {
+    +enable()
+    +disable()
+  }
+}
+package modules.gui {
+  class PokebotGui {
+    +run()
+    +on_settings_updated()
+  }
+}
+package modules.modes {
+  class BerryBlendMode {
+    +name()
+    +is_selectable()
+    +run()
+  }
+}
+package modules.modes {
+  class BunnyHopMode {
+    +name()
+    +is_selectable()
+    +on_battle_ended()
+    +run()
+  }
+}
+package modules.modes {
+  class DaycareMode {
+    +name()
+    +is_selectable()
+    +on_egg_hatched()
+    +run()
+  }
+}
+package modules.modes {
+  class NoRotateLeadDefaultBattleStrategy {
+    +choose_new_lead_after_battle()
+  }
+  class EVTrainMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +on_battle_ended()
+    +on_whiteout()
+    +run()
+  }
+}
+package modules.modes {
+  class FishingSpot {
+  }
+  class FishingSpotList {
+    +add()
+    +get_by_coordinates()
+    +get_next_untested()
+    +reset()
+  }
+  class FeebasMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +on_battle_ended()
+    +run()
+  }
+}
+package modules.modes {
+  class FishingMode {
+    +name()
+    +is_selectable()
+    +on_battle_ended()
+    +run()
+  }
+}
+package modules.modes {
+  class GameCornerMode {
+    +name()
+    +is_selectable()
+    +run()
+  }
+}
+package modules.modes {
+  class ItemStealMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +on_battle_ended()
+    +on_whiteout()
+    +run()
+  }
+}
+package modules.modes {
+  class KecleonMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +on_whiteout()
+    +run()
+  }
+}
+package modules.modes {
+  class LevelGrindMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +on_battle_ended()
+    +on_whiteout()
+    +run()
+  }
+}
+package modules.modes {
+  class NuggetBridgeMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +on_whiteout()
+    +run()
+  }
+}
+package modules.modes {
+  class PuzzleSolverMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +on_repel_effect_ended()
+    +on_pickup_threshold_reached()
+    +run()
+  }
+}
+package modules.modes {
+  class RoamerResetMode {
+    +name()
+    +is_selectable()
+    +on_repel_effect_ended()
+    +on_battle_started()
+    +run()
+    +run_emerald()
+    +run_frlg()
+    +run_rs()
+  }
+}
+package modules.modes {
+  class RockSmashMode {
+    +name()
+    +is_selectable()
+    +on_safari_zone_timeout()
+    +on_battle_started()
+    +on_battle_ended()
+    +on_repel_effect_ended()
+    +run()
+    +reset_and_wait()
+    +smash()
+    +mount_bicycle()
+    +unmount_bicycle()
+    +granite_cave()
+    +enter_safari_zone()
+    +safari_zone()
+  }
+}
+package modules.modes {
+  class SafariMode {
+    +name()
+    +is_selectable()
+    +on_safari_zone_timeout()
+    +on_battle_ended()
+    +run()
+  }
+}
+package modules.modes {
+  class SpinMode {
+    +name()
+    +is_selectable()
+    +on_battle_ended()
+    +run()
+  }
+}
+package modules.modes {
+  class StartersMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +run()
+  }
+}
+package modules.modes {
+  class StaticGiftResetsMode {
+    +name()
+    +is_selectable()
+    +on_egg_hatched()
+    +run()
+  }
+}
+package modules.modes {
+  class StaticRunAway {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +run()
+  }
+}
+package modules.modes {
+  class Encounter {
+  }
+  class StaticSoftResetsMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +run()
+  }
+}
+package modules.modes {
+  class SudowoodoMode {
+    +name()
+    +is_selectable()
+    +on_battle_started()
+    +run()
+  }
+}
+package modules.modes {
+  class SweetScentMode {
+    +name()
+    +is_selectable()
+    +on_battle_ended()
+    +run()
+  }
+}
+package modules.modes {
+  class SavedMapLocation {
+  }
+}
+package modules.modes {
+  class BattleAction {
+  }
+  class BotMode {
+    +name()
+    +is_selectable()
+    +run()
+    +on_battle_started()
+    +on_battle_ended()
+    +on_pokemon_evolving_after_battle()
+    +on_pickup_threshold_reached()
+    +on_spotted_by_trainer()
+    +on_pokenav_call()
+    +on_repel_effect_ended()
+    +on_pokemon_fainted_due_to_poison()
+    +on_whiteout()
+    +on_safari_zone_timeout()
+    +on_egg_hatched()
+  }
+  class BotModeError {
+  }
+  class FrameInfo {
+    +game_state_changed()
+    +game_state_changed_to()
+    +game_state_changed_from()
+    +task_is_active()
+    +script_is_active()
+  }
+  class BotListener {
+    +handle_frame()
+  }
+}
+package modules.modes {
+  class BattleListener {
+    +handle_frame()
+    +fight()
+    +check_for_pickup()
+    +rotate_lead_pokemon()
+    +catch()
+    +run_away_from_battle()
+  }
+  class TrainerApproachListener {
+    +handle_frame()
+    +handle_trainer_approach()
+  }
+  class FishingListener {
+    +handle_frame()
+  }
+  class PokenavListener {
+    +handle_frame()
+    +ignore_call()
+  }
+  class EggHatchListener {
+    +handle_frame()
+    +handle_hatching_egg()
+  }
+  class RepelListener {
+    +handle_frame()
+    +handle_repel_expiration_message()
+  }
+  class PoisonListener {
+    +handle_frame()
+    +handle_fainting_message()
+  }
+  class WhiteoutListener {
+    +handle_frame()
+    +handle_whiteout_dialogue()
+  }
+  class SafariZoneListener {
+    +handle_frame()
+    +handle_safari_zone_timeout()
+    +handle_safari_zone_timeout_global()
+  }
+}
+package modules.modes {
+}
+package modules.modes.util {
+}
+package modules.modes.util {
+  class TaskFishing {
+  }
+}
+package modules.modes.util {
+  class RanOutOfRepels {
+  }
+}
+package modules.modes.util {
+}
+package modules.modes.util {
+  class PokecenterLoopController {
+    +on_battle_started()
+    +on_battle_ended()
+    +on_whiteout()
+    +verify_on_start()
+    +run()
+  }
+}
+package modules.modes.util {
+}
+package modules.modes.util {
+}
+package modules.modes.util {
+}
+package modules.modes.util {
+  class TimedOutTryingToReachWaypointError {
+  }
+}
+package modules.modes.util {
+}
+package modules.modes.util {
+}
+package modules.web {
+}
+package modules.web {
+  class DataSubscription {
+    +all_names()
+  }
+  class ThreadSafeEvent {
+    +set()
+  }
+  class ThreadSafeCounter {
+    +increment()
+    +decrement()
+    +value()
+  }
+}
+package tests {
+  class TestBattleEvolution {
+    +test_it_stops_evolution()
+    +test_it_allows_evolution()
+    +test_it_stops_evolution_with_new_move()
+    +test_it_allows_evolution_with_new_move()
+  }
+}
+package tests {
+  class TestBattleMoveLearning {
+    +test_it_learns_move_with_empty_slot_available()
+    +test_it_replaces_existing_move()
+    +test_it_does_not_learn_new_move()
+    +test_it_switches_to_manual_when_having_to_replace_new_move()
+  }
+}
+package tests {
+  class TestEffectiveEncounterRatesForCurrentMap {
+    +assertEffectiveEncountersEqual()
+    +setUp()
+    +test_route102_plain()
+    +test_empty_encounters()
+    +test_nosepass_plain()
+    +test_nosepass_repel13()
+    +test_nosepass_pressure()
+    +test_nosepass_intimidate21()
+    +test_nosepass_repel13_intimidate21()
+    +test_nosepass_repel13_pressure()
+    +test_skarmory_magnetpull()
+    +test_skarmory_repel16_magnetpull()
+    +test_plusle_static()
+    +test_plusle_repel13_static()
+    +test_chinchou_static()
+    +test_chinchou_repel26_static()
+  }
+}
+package tests {
+  class TestSpin {
+    +test_it_gets_three_encounters()
+    +test_it_catches_shinies()
+  }
+}
+package tests {
+  class TestStarter {
+    +test_it_runs_three_times()
+    +test_it_stops_when_encountering_shiny()
+  }
+}
+package tests {
+  class TestPathfinding {
+    +test_basic_pathfinding()
+    +test_will_follow_warps()
+    +test_will_raise_exception_for_blocked_tile()
+    +test_will_move_across_connected_maps()
+    +test_rse_water_currents()
+    +test_rse_diving()
+    +test_it_climbs_muddy_slope_on_mach_bike()
+    +test_it_slides_down_muddy_slope()
+    +test_it_traverses_acro_bike_rails()
+    +test_it_swims_up_a_waterfall()
+    +test_it_swims_down_a_waterfall()
+    +test_it_will_go_on_land_after_surfing()
+    +test_it_will_start_to_surf()
+  }
+}
+package tests {
+  class MockStatsDatabase {
+    +log_encounter()
+    +log_end_of_battle()
+    +log_fishing_attempt()
+    +log_pickup_items()
+    +reset_shiny_phase()
+  }
+  class AutomatedTestBotMode {
+    +name()
+    +set_on_battle_started()
+    +on_battle_started()
+    +set_on_battle_ended()
+    +on_battle_ended()
+    +set_on_pokemon_evolving_after_battle()
+    +on_pokemon_evolving_after_battle()
+    +set_on_pickup_threshold_reached()
+    +on_pickup_threshold_reached()
+    +set_on_spotted_by_trainer()
+    +on_spotted_by_trainer()
+    +set_on_pokenav_call()
+    +on_pokenav_call()
+    +set_on_repel_effect_ended()
+    +on_repel_effect_ended()
+    +set_on_pokemon_fainted_due_to_poison()
+    +on_pokemon_fainted_due_to_poison()
+    +set_on_whiteout()
+    +on_whiteout()
+    +set_on_safari_zone_timeout()
+    +on_safari_zone_timeout()
+    +set_on_egg_hatched()
+    +on_egg_hatched()
+    +run()
+  }
+  class BotTestCase {
+    +bot_mode()
+    +stats()
+    +rom()
+    +assertIsInManualMode()
+    +assertIsNotInManualMode()
+  }
+}
+package tests {
+}
+package utility {
+}
+@enduml
+
+@startuml package_diagram
+package analyze_project {}
+package pokebot {}
+package requirements {}
+package updater {}
+package modules.battle_action_selection {}
+package modules.battle_evolution_scene {}
+package modules.battle_handler {}
+package modules.battle_menuing {}
+package modules.battle_move_replacing {}
+package modules.battle_state {}
+package modules.clock {}
+package modules.console {}
+package modules.context {}
+package modules.daycare {}
+package modules.debug {}
+package modules.debug_utilities {}
+package modules.discord {}
+package modules.encounter {}
+package modules.exceptions {}
+package modules.exceptions_hook {}
+package modules.files {}
+package modules.fishing {}
+package modules.game {}
+package modules.game_sprites {}
+package modules.game_stats {}
+package modules.items {}
+package modules.keyboard {}
+package modules.libmgba {}
+package modules.main {}
+package modules.map {}
+package modules.map_data {}
+package modules.map_path {}
+package modules.mart {}
+package modules.memory {}
+package modules.menuing {}
+package modules.menu_parsers {}
+package modules.player {}
+package modules.player_pc_navigaton {}
+package modules.plugins {}
+package modules.plugin_interface {}
+package modules.pokedex {}
+package modules.pokemon {}
+package modules.pokemon_party {}
+package modules.pokemon_storage {}
+package modules.pokemon_storage_navigaton {}
+package modules.profiles {}
+package modules.region_map {}
+package modules.roamer {}
+package modules.roms {}
+package modules.runtime {}
+package modules.safari_strategy {}
+package modules.save_data {}
+package modules.save_import {}
+package modules.sprites {}
+package modules.state_cache {}
+package modules.stats {}
+package modules.stats_migrate {}
+package modules.tasks {}
+package modules.tcg_card {}
+package modules.text_printer {}
+package modules.version {}
+package modules.battle_strategies.catch {}
+package modules.battle_strategies.default {}
+package modules.battle_strategies.item_stealing {}
+package modules.battle_strategies.level_balancing {}
+package modules.battle_strategies.level_up {}
+package modules.battle_strategies.lose_on_purpose {}
+package modules.battle_strategies.run_away {}
+package modules.battle_strategies._interface {}
+package modules.battle_strategies._util {}
+package modules.battle_strategies.__init__ {}
+package modules.built_in_plugins.discord_integration {}
+package modules.built_in_plugins.generate_encounter_media {}
+package modules.built_in_plugins.obs {}
+package modules.config.schemas_v1 {}
+package modules.config.__init__ {}
+package modules.config.templates.customcatchfilters {}
+package modules.data.extract {}
+package modules.data.get_pret_maps {}
+package modules.data.event_flags.compile_pret_flags {}
+package modules.data.event_vars.compile_pret_vars {}
+package modules.data.symbols.fetch_symbols {}
+package modules.gui.create_profile_screen {}
+package modules.gui.debug_edit_item_bag {}
+package modules.gui.debug_edit_party {}
+package modules.gui.debug_edit_pokedex {}
+package modules.gui.debug_menu {}
+package modules.gui.debug_tabs {}
+package modules.gui.desktop_notification {}
+package modules.gui.emulator_controls {}
+package modules.gui.emulator_screen {}
+package modules.gui.ev_selection_window {}
+package modules.gui.headless {}
+package modules.gui.load_state_window {}
+package modules.gui.multi_select_window {}
+package modules.gui.select_profile_screen {}
+package modules.gui.__init__ {}
+package modules.modes.berry_blend {}
+package modules.modes.bunny_hop {}
+package modules.modes.daycare {}
+package modules.modes.ev_train {}
+package modules.modes.feebas {}
+package modules.modes.fishing {}
+package modules.modes.game_corner {}
+package modules.modes.item_steal {}
+package modules.modes.kecleon {}
+package modules.modes.level_grind {}
+package modules.modes.nugget_bridge {}
+package modules.modes.puzzle_solver {}
+package modules.modes.roamer_reset {}
+package modules.modes.rock_smash {}
+package modules.modes.safari {}
+package modules.modes.spin {}
+package modules.modes.starters {}
+package modules.modes.static_gift_resets {}
+package modules.modes.static_run_away {}
+package modules.modes.static_soft_resets {}
+package modules.modes.sudowoodo {}
+package modules.modes.sweet_scent {}
+package modules.modes._asserts {}
+package modules.modes._interface {}
+package modules.modes._listeners {}
+package modules.modes.__init__ {}
+package modules.modes.util.event_flags_and_vars {}
+package modules.modes.util.higher_level_actions {}
+package modules.modes.util.items {}
+package modules.modes.util.map {}
+package modules.modes.util.pokecenter_loop {}
+package modules.modes.util.sleep {}
+package modules.modes.util.soft_reset {}
+package modules.modes.util.tasks_scripts {}
+package modules.modes.util.walking {}
+package modules.modes.util._util_helper {}
+package modules.modes.util.__init__ {}
+package modules.web.http {}
+package modules.web.http_stream {}
+package tests.test_battle_evolution {}
+package tests.test_battle_move_learning {}
+package tests.test_map {}
+package tests.test_mode_spin {}
+package tests.test_mode_starter {}
+package tests.test_pathfinding {}
+package tests.utility {}
+package tests.__init__ {}
+package utility.extract_stats_encounters {}
+pokebot --> modules.runtime
+pokebot --> modules.version
+requirements --> modules.runtime
+requirements --> modules.version
+updater --> modules.console
+updater --> modules.runtime
+updater --> modules.version
+modules.battle_action_selection --> modules.battle_menuing
+modules.battle_action_selection --> modules.battle_state
+modules.battle_action_selection --> modules.context
+modules.battle_action_selection --> modules.debug
+modules.battle_action_selection --> modules.items
+modules.battle_action_selection --> modules.memory
+modules.battle_action_selection --> modules.menuing
+modules.battle_action_selection --> modules.pokemon_party
+modules.battle_evolution_scene --> modules.battle_move_replacing
+modules.battle_evolution_scene --> modules.context
+modules.battle_evolution_scene --> modules.debug
+modules.battle_evolution_scene --> modules.pokemon_party
+modules.battle_evolution_scene --> modules.tasks
+modules.battle_handler --> modules.battle_action_selection
+modules.battle_handler --> modules.battle_evolution_scene
+modules.battle_handler --> modules.battle_move_replacing
+modules.battle_handler --> modules.battle_state
+modules.battle_handler --> modules.context
+modules.battle_handler --> modules.debug
+modules.battle_handler --> modules.keyboard
+modules.battle_handler --> modules.memory
+modules.battle_handler --> modules.menuing
+modules.battle_handler --> modules.plugins
+modules.battle_handler --> modules.pokemon_party
+modules.battle_handler --> modules.tasks
+modules.battle_menuing --> modules.context
+modules.battle_menuing --> modules.debug
+modules.battle_menuing --> modules.memory
+modules.battle_move_replacing --> modules.battle_state
+modules.battle_move_replacing --> modules.context
+modules.battle_move_replacing --> modules.debug
+modules.battle_move_replacing --> modules.game
+modules.battle_move_replacing --> modules.memory
+modules.battle_move_replacing --> modules.memory
+modules.battle_move_replacing --> modules.pokemon
+modules.battle_move_replacing --> modules.pokemon_party
+modules.battle_move_replacing --> modules.tasks
+modules.battle_state --> modules.context
+modules.battle_state --> modules.fishing
+modules.battle_state --> modules.game
+modules.battle_state --> modules.memory
+modules.battle_state --> modules.player
+modules.battle_state --> modules.pokemon
+modules.battle_state --> modules.state_cache
+modules.battle_state --> modules.tasks
+modules.clock --> modules.context
+modules.clock --> modules.memory
+modules.context --> modules.runtime
+modules.daycare --> modules.context
+modules.daycare --> modules.memory
+modules.daycare --> modules.pokemon
+modules.debug_utilities --> modules.context
+modules.debug_utilities --> modules.game
+modules.debug_utilities --> modules.items
+modules.debug_utilities --> modules.map
+modules.debug_utilities --> modules.memory
+modules.debug_utilities --> modules.player
+modules.debug_utilities --> modules.pokemon
+modules.debug_utilities --> modules.pokemon_party
+modules.debug_utilities --> modules.roms
+modules.discord --> modules.console
+modules.discord --> modules.context
+modules.discord --> modules.state_cache
+modules.discord --> modules.version
+modules.encounter --> modules.battle_state
+modules.encounter --> modules.console
+modules.encounter --> modules.context
+modules.encounter --> modules.files
+modules.encounter --> modules.gui.desktop_notification
+modules.encounter --> modules.map_data
+modules.encounter --> modules.memory
+modules.encounter --> modules.player
+modules.encounter --> modules.plugins
+modules.encounter --> modules.pokedex
+modules.encounter --> modules.roamer
+modules.encounter --> modules.runtime
+modules.exceptions_hook --> modules.console
+modules.exceptions_hook --> modules.context
+modules.exceptions_hook --> modules.exceptions
+modules.files --> modules.context
+modules.files --> modules.pokemon
+modules.fishing --> modules.context
+modules.fishing --> modules.map
+modules.fishing --> modules.map_data
+modules.fishing --> modules.memory
+modules.game --> modules.roms
+modules.game --> modules.runtime
+modules.game_sprites --> modules.memory
+modules.game_stats --> modules.context
+modules.game_stats --> modules.memory
+modules.items --> modules.context
+modules.items --> modules.memory
+modules.items --> modules.runtime
+modules.items --> modules.state_cache
+modules.keyboard --> modules.context
+modules.keyboard --> modules.debug
+modules.keyboard --> modules.game
+modules.keyboard --> modules.game_sprites
+modules.keyboard --> modules.memory
+modules.keyboard --> modules.roms
+modules.keyboard --> modules.runtime
+modules.keyboard --> modules.tasks
+modules.libmgba --> modules.console
+modules.libmgba --> modules.profiles
+modules.libmgba --> modules.tasks
+modules.main --> modules.console
+modules.main --> modules.context
+modules.main --> modules.memory
+modules.main --> modules.plugins
+modules.main --> modules.stats
+modules.main --> modules.tasks
+modules.map --> modules.context
+modules.map --> modules.game
+modules.map --> modules.items
+modules.map --> modules.memory
+modules.map --> modules.pokemon
+modules.map --> modules.pokemon_party
+modules.map --> modules.state_cache
+modules.map_data --> modules.context
+modules.map_data --> modules.map
+modules.map_path --> modules.context
+modules.map_path --> modules.map
+modules.map_path --> modules.map_data
+modules.map_path --> modules.memory
+modules.map_path --> modules.pokemon_party
+modules.mart --> modules.context
+modules.mart --> modules.items
+modules.mart --> modules.memory
+modules.memory --> modules.context
+modules.memory --> modules.game
+modules.memory --> modules.state_cache
+modules.menuing --> modules.context
+modules.menuing --> modules.game_stats
+modules.menuing --> modules.items
+modules.menuing --> modules.memory
+modules.menuing --> modules.menu_parsers
+modules.menuing --> modules.modes._asserts
+modules.menuing --> modules.modes._interface
+modules.menuing --> modules.pokemon
+modules.menuing --> modules.pokemon_party
+modules.menuing --> modules.tasks
+modules.menu_parsers --> modules.context
+modules.menu_parsers --> modules.game
+modules.menu_parsers --> modules.memory
+modules.menu_parsers --> modules.pokemon
+modules.menu_parsers --> modules.pokemon_party
+modules.menu_parsers --> modules.tasks
+modules.player --> modules.context
+modules.player --> modules.game
+modules.player --> modules.map
+modules.player --> modules.map_data
+modules.player --> modules.memory
+modules.player --> modules.pokemon
+modules.player --> modules.state_cache
+modules.player --> modules.tasks
+modules.player_pc_navigaton --> modules.context
+modules.player_pc_navigaton --> modules.game
+modules.player_pc_navigaton --> modules.memory
+modules.player_pc_navigaton --> modules.menuing
+modules.player_pc_navigaton --> modules.items
+modules.player_pc_navigaton --> modules.tasks
+modules.plugins --> modules.battle_state
+modules.plugins --> modules.context
+modules.plugins --> modules.plugin_interface
+modules.plugins --> modules.pokemon
+modules.plugins --> modules.runtime
+modules.pokedex --> modules.context
+modules.pokedex --> modules.memory
+modules.pokedex --> modules.pokemon
+modules.pokedex --> modules.state_cache
+modules.pokemon --> modules.context
+modules.pokemon --> modules.game
+modules.pokemon --> modules.items
+modules.pokemon --> modules.memory
+modules.pokemon --> modules.roms
+modules.pokemon --> modules.runtime
+modules.pokemon_party --> modules.context
+modules.pokemon_party --> modules.memory
+modules.pokemon_party --> modules.pokemon
+modules.pokemon_party --> modules.state_cache
+modules.pokemon_storage --> modules.context
+modules.pokemon_storage --> modules.game
+modules.pokemon_storage --> modules.memory
+modules.pokemon_storage --> modules.pokemon
+modules.pokemon_storage --> modules.state_cache
+modules.pokemon_storage_navigaton --> modules.context
+modules.pokemon_storage_navigaton --> modules.memory
+modules.pokemon_storage_navigaton --> modules.menuing
+modules.pokemon_storage_navigaton --> modules.tasks
+modules.profiles --> modules.config.schemas_v1
+modules.profiles --> modules.console
+modules.profiles --> modules.roms
+modules.profiles --> modules.runtime
+modules.region_map --> modules.context
+modules.region_map --> modules.memory
+modules.roamer --> modules.context
+modules.roamer --> modules.map
+modules.roamer --> modules.map_data
+modules.roamer --> modules.memory
+modules.roamer --> modules.pokemon
+modules.roms --> modules.runtime
+modules.safari_strategy --> modules.context
+modules.safari_strategy --> modules.files
+modules.safari_strategy --> modules.map_data
+modules.safari_strategy --> modules.memory
+modules.safari_strategy --> modules.modes._interface
+modules.safari_strategy --> modules.player
+modules.safari_strategy --> modules.pokemon
+modules.safari_strategy --> modules.pokemon_party
+modules.safari_strategy --> modules.roms
+modules.safari_strategy --> modules.runtime
+modules.safari_strategy --> modules.tasks
+modules.safari_strategy --> modules.items
+modules.save_data --> modules.context
+modules.save_data --> modules.game
+modules.save_data --> modules.items
+modules.save_data --> modules.map
+modules.save_data --> modules.memory
+modules.save_data --> modules.player
+modules.save_data --> modules.pokemon_party
+modules.save_data --> modules.pokemon_storage
+modules.save_import --> modules.memory
+modules.save_import --> modules.profiles
+modules.save_import --> modules.roms
+modules.sprites --> modules.files
+modules.sprites --> modules.pokemon
+modules.sprites --> modules.runtime
+modules.state_cache --> modules.context
+modules.stats --> modules.battle_state
+modules.stats --> modules.console
+modules.stats --> modules.context
+modules.stats --> modules.fishing
+modules.stats --> modules.items
+modules.stats --> modules.pokemon
+modules.stats_migrate --> modules.battle_state
+modules.stats_migrate --> modules.console
+modules.stats_migrate --> modules.context
+modules.stats_migrate --> modules.game
+modules.stats_migrate --> modules.player
+modules.stats_migrate --> modules.pokemon
+modules.stats_migrate --> modules.profiles
+modules.stats_migrate --> modules.stats
+modules.tasks --> modules.context
+modules.tasks --> modules.game
+modules.tasks --> modules.memory
+modules.tasks --> modules.state_cache
+modules.tcg_card --> modules.console
+modules.tcg_card --> modules.context
+modules.tcg_card --> modules.files
+modules.tcg_card --> modules.player
+modules.tcg_card --> modules.pokemon
+modules.tcg_card --> modules.runtime
+modules.tcg_card --> modules.version
+modules.text_printer --> modules.context
+modules.text_printer --> modules.memory
+modules.version --> modules.runtime
+modules.battle_strategies.catch --> modules.battle_state
+modules.battle_strategies.catch --> modules.context
+modules.battle_strategies.catch --> modules.items
+modules.battle_strategies.catch --> modules.map
+modules.battle_strategies.catch --> modules.pokedex
+modules.battle_strategies.catch --> modules.pokemon
+modules.battle_strategies.catch --> modules.safari_strategy
+modules.battle_strategies.default --> modules.battle_state
+modules.battle_strategies.default --> modules.context
+modules.battle_strategies.default --> modules.modes._interface
+modules.battle_strategies.default --> modules.pokemon
+modules.battle_strategies.default --> modules.pokemon_party
+modules.battle_strategies.item_stealing --> modules.battle_state
+modules.battle_strategies.item_stealing --> modules.pokemon
+modules.battle_strategies.item_stealing --> modules.pokemon_party
+modules.battle_strategies.level_balancing --> modules.battle_state
+modules.battle_strategies.level_balancing --> modules.pokemon_party
+modules.battle_strategies.level_up --> modules.battle_state
+modules.battle_strategies.level_up --> modules.context
+modules.battle_strategies.level_up --> modules.pokemon
+modules.battle_strategies.level_up --> modules.pokemon_party
+modules.battle_strategies.lose_on_purpose --> modules.pokemon
+modules.battle_strategies.lose_on_purpose --> modules.pokemon_party
+modules.battle_strategies.run_away --> modules.battle_state
+modules.battle_strategies._interface --> modules.battle_state
+modules.battle_strategies._interface --> modules.items
+modules.battle_strategies._interface --> modules.pokemon
+modules.battle_strategies._util --> modules.battle_state
+modules.battle_strategies._util --> modules.context
+modules.battle_strategies._util --> modules.items
+modules.battle_strategies._util --> modules.memory
+modules.battle_strategies._util --> modules.pokemon
+modules.battle_strategies._util --> modules.pokemon_party
+modules.built_in_plugins.discord_integration --> modules.context
+modules.built_in_plugins.discord_integration --> modules.discord
+modules.built_in_plugins.discord_integration --> modules.encounter
+modules.built_in_plugins.discord_integration --> modules.plugin_interface
+modules.built_in_plugins.discord_integration --> modules.runtime
+modules.built_in_plugins.discord_integration --> modules.sprites
+modules.built_in_plugins.discord_integration --> modules.stats
+modules.built_in_plugins.generate_encounter_media --> modules.context
+modules.built_in_plugins.generate_encounter_media --> modules.encounter
+modules.built_in_plugins.generate_encounter_media --> modules.main
+modules.built_in_plugins.generate_encounter_media --> modules.plugin_interface
+modules.built_in_plugins.generate_encounter_media --> modules.tcg_card
+modules.built_in_plugins.obs --> modules.console
+modules.built_in_plugins.obs --> modules.context
+modules.built_in_plugins.obs --> modules.discord
+modules.built_in_plugins.obs --> modules.files
+modules.built_in_plugins.obs --> modules.plugin_interface
+modules.config.__init__ --> modules.config.schemas_v1
+modules.config.__init__ --> modules.runtime
+modules.config.templates.customcatchfilters --> modules.console
+modules.config.templates.customcatchfilters --> modules.files
+modules.config.templates.customcatchfilters --> modules.pokedex
+modules.config.templates.customcatchfilters --> modules.pokemon
+modules.data.extract --> modules.game
+modules.data.extract --> modules.roms
+modules.gui.create_profile_screen --> modules.profiles
+modules.gui.create_profile_screen --> modules.roms
+modules.gui.create_profile_screen --> modules.runtime
+modules.gui.create_profile_screen --> modules.save_import
+modules.gui.create_profile_screen --> modules.version
+modules.gui.debug_edit_item_bag --> modules.context
+modules.gui.debug_edit_item_bag --> modules.debug_utilities
+modules.gui.debug_edit_item_bag --> modules.items
+modules.gui.debug_edit_party --> modules.context
+modules.gui.debug_edit_party --> modules.debug_utilities
+modules.gui.debug_edit_party --> modules.items
+modules.gui.debug_edit_party --> modules.pokemon
+modules.gui.debug_edit_party --> modules.pokemon_party
+modules.gui.debug_edit_pokedex --> modules.context
+modules.gui.debug_edit_pokedex --> modules.debug_utilities
+modules.gui.debug_edit_pokedex --> modules.pokedex
+modules.gui.debug_edit_pokedex --> modules.pokemon
+modules.gui.debug_menu --> modules.battle_state
+modules.gui.debug_menu --> modules.context
+modules.gui.debug_menu --> modules.debug_utilities
+modules.gui.debug_menu --> modules.gui.debug_edit_item_bag
+modules.gui.debug_menu --> modules.gui.debug_edit_party
+modules.gui.debug_menu --> modules.gui.debug_edit_pokedex
+modules.gui.debug_menu --> modules.gui.multi_select_window
+modules.gui.debug_menu --> modules.memory
+modules.gui.debug_menu --> modules.player
+modules.gui.debug_menu --> modules.pokemon
+modules.gui.debug_menu --> modules.pokemon_party
+modules.gui.debug_menu --> modules.runtime
+modules.gui.debug_tabs --> modules.battle_state
+modules.gui.debug_tabs --> modules.clock
+modules.gui.debug_tabs --> modules.context
+modules.gui.debug_tabs --> modules.daycare
+modules.gui.debug_tabs --> modules.debug
+modules.gui.debug_tabs --> modules.fishing
+modules.gui.debug_tabs --> modules.game
+modules.gui.debug_tabs --> modules.game_stats
+modules.gui.debug_tabs --> modules.gui.emulator_controls
+modules.gui.debug_tabs --> modules.items
+modules.gui.debug_tabs --> modules.map
+modules.gui.debug_tabs --> modules.map_data
+modules.gui.debug_tabs --> modules.map_path
+modules.gui.debug_tabs --> modules.memory
+modules.gui.debug_tabs --> modules.menuing
+modules.gui.debug_tabs --> modules.player
+modules.gui.debug_tabs --> modules.pokedex
+modules.gui.debug_tabs --> modules.pokemon
+modules.gui.debug_tabs --> modules.pokemon_party
+modules.gui.debug_tabs --> modules.pokemon_storage
+modules.gui.debug_tabs --> modules.roamer
+modules.gui.debug_tabs --> modules.tasks
+modules.gui.debug_tabs --> modules.text_printer
+modules.gui.desktop_notification --> modules.console
+modules.gui.desktop_notification --> modules.context
+modules.gui.desktop_notification --> modules.sprites
+modules.gui.desktop_notification --> modules.version
+modules.gui.emulator_controls --> modules.console
+modules.gui.emulator_controls --> modules.context
+modules.gui.emulator_controls --> modules.gui.debug_menu
+modules.gui.emulator_controls --> modules.gui.multi_select_window
+modules.gui.emulator_controls --> modules.libmgba
+modules.gui.emulator_controls --> modules.memory
+modules.gui.emulator_controls --> modules.version
+modules.gui.emulator_screen --> modules.gui.debug_tabs
+modules.gui.emulator_screen --> modules.gui.emulator_controls
+modules.gui.emulator_screen --> modules.sprites
+modules.gui.emulator_screen --> modules.version
+modules.gui.ev_selection_window --> modules.context
+modules.gui.ev_selection_window --> modules.pokemon
+modules.gui.ev_selection_window --> modules.pokemon
+modules.gui.ev_selection_window --> modules.pokemon_party
+modules.gui.headless --> modules.context
+modules.gui.headless --> modules.game
+modules.gui.headless --> modules.libmgba
+modules.gui.load_state_window --> modules.context
+modules.gui.load_state_window --> modules.runtime
+modules.gui.multi_select_window --> modules.console
+modules.gui.multi_select_window --> modules.context
+modules.gui.select_profile_screen --> modules.profiles
+modules.gui.__init__ --> modules.console
+modules.gui.__init__ --> modules.context
+modules.gui.__init__ --> modules.debug
+modules.gui.__init__ --> modules.game
+modules.gui.__init__ --> modules.gui.create_profile_screen
+modules.gui.__init__ --> modules.gui.emulator_screen
+modules.gui.__init__ --> modules.gui.load_state_window
+modules.gui.__init__ --> modules.gui.select_profile_screen
+modules.gui.__init__ --> modules.libmgba
+modules.gui.__init__ --> modules.sprites
+modules.gui.__init__ --> modules.version
+modules.modes.berry_blend --> modules.items
+modules.modes.berry_blend --> modules.player
+modules.modes.berry_blend --> modules.roms
+modules.modes.berry_blend --> modules.context
+modules.modes.bunny_hop --> modules.context
+modules.modes.bunny_hop --> modules.items
+modules.modes.bunny_hop --> modules.player
+modules.modes.bunny_hop --> modules.battle_state
+modules.modes.daycare --> modules.console
+modules.modes.daycare --> modules.context
+modules.modes.daycare --> modules.daycare
+modules.modes.daycare --> modules.encounter
+modules.modes.daycare --> modules.items
+modules.modes.daycare --> modules.map_data
+modules.modes.daycare --> modules.map_path
+modules.modes.daycare --> modules.memory
+modules.modes.daycare --> modules.player
+modules.modes.daycare --> modules.pokemon_party
+modules.modes.daycare --> modules.tasks
+modules.modes.ev_train --> modules.context
+modules.modes.ev_train --> modules.map
+modules.modes.ev_train --> modules.map_data
+modules.modes.ev_train --> modules.player
+modules.modes.ev_train --> modules.pokemon
+modules.modes.ev_train --> modules.pokemon_party
+modules.modes.feebas --> modules.battle_state
+modules.modes.feebas --> modules.context
+modules.modes.feebas --> modules.items
+modules.modes.feebas --> modules.map
+modules.modes.feebas --> modules.map_data
+modules.modes.feebas --> modules.player
+modules.modes.feebas --> modules.pokemon_party
+modules.modes.fishing --> modules.battle_state
+modules.modes.fishing --> modules.gui.multi_select_window
+modules.modes.fishing --> modules.items
+modules.modes.fishing --> modules.player
+modules.modes.fishing --> modules.runtime
+modules.modes.game_corner --> modules.context
+modules.modes.game_corner --> modules.encounter
+modules.modes.game_corner --> modules.gui.multi_select_window
+modules.modes.game_corner --> modules.map_data
+modules.modes.game_corner --> modules.menuing
+modules.modes.game_corner --> modules.player
+modules.modes.game_corner --> modules.pokemon_party
+modules.modes.game_corner --> modules.runtime
+modules.modes.game_corner --> modules.save_data
+modules.modes.game_corner --> modules.tasks
+modules.modes.item_steal --> modules.battle_state
+modules.modes.item_steal --> modules.battle_strategies.item_stealing
+modules.modes.item_steal --> modules.encounter
+modules.modes.item_steal --> modules.map
+modules.modes.item_steal --> modules.modes.util.pokecenter_loop
+modules.modes.item_steal --> modules.pokemon_party
+modules.modes.kecleon --> modules.context
+modules.modes.kecleon --> modules.encounter
+modules.modes.kecleon --> modules.map_data
+modules.modes.kecleon --> modules.memory
+modules.modes.kecleon --> modules.player
+modules.modes.kecleon --> modules.pokemon_party
+modules.modes.kecleon --> modules.save_data
+modules.modes.level_grind --> modules.context
+modules.modes.level_grind --> modules.map
+modules.modes.level_grind --> modules.pokemon_party
+modules.modes.nugget_bridge --> modules.context
+modules.modes.nugget_bridge --> modules.items
+modules.modes.nugget_bridge --> modules.map_data
+modules.modes.nugget_bridge --> modules.memory
+modules.modes.nugget_bridge --> modules.player
+modules.modes.nugget_bridge --> modules.pokemon_party
+modules.modes.puzzle_solver --> modules.context
+modules.modes.puzzle_solver --> modules.debug
+modules.modes.puzzle_solver --> modules.map
+modules.modes.puzzle_solver --> modules.map_data
+modules.modes.puzzle_solver --> modules.memory
+modules.modes.puzzle_solver --> modules.menuing
+modules.modes.puzzle_solver --> modules.modes.util.higher_level_actions
+modules.modes.puzzle_solver --> modules.player
+modules.modes.puzzle_solver --> modules.pokemon_party
+modules.modes.puzzle_solver --> modules.tasks
+modules.modes.roamer_reset --> modules.context
+modules.modes.roamer_reset --> modules.encounter
+modules.modes.roamer_reset --> modules.gui.multi_select_window
+modules.modes.roamer_reset --> modules.items
+modules.modes.roamer_reset --> modules.map_data
+modules.modes.roamer_reset --> modules.memory
+modules.modes.roamer_reset --> modules.modes.util.event_flags_and_vars
+modules.modes.roamer_reset --> modules.modes.util.tasks_scripts
+modules.modes.roamer_reset --> modules.modes.util.walking
+modules.modes.roamer_reset --> modules.player
+modules.modes.roamer_reset --> modules.region_map
+modules.modes.roamer_reset --> modules.runtime
+modules.modes.roamer_reset --> modules.save_data
+modules.modes.roamer_reset --> modules.tasks
+modules.modes.rock_smash --> modules.battle_state
+modules.modes.rock_smash --> modules.context
+modules.modes.rock_smash --> modules.debug
+modules.modes.rock_smash --> modules.encounter
+modules.modes.rock_smash --> modules.gui.multi_select_window
+modules.modes.rock_smash --> modules.items
+modules.modes.rock_smash --> modules.map_data
+modules.modes.rock_smash --> modules.map_path
+modules.modes.rock_smash --> modules.memory
+modules.modes.rock_smash --> modules.player
+modules.modes.rock_smash --> modules.runtime
+modules.modes.rock_smash --> modules.safari_strategy
+modules.modes.rock_smash --> modules.save_data
+modules.modes.rock_smash --> modules.tasks
+modules.modes.safari --> modules.context
+modules.modes.safari --> modules.battle_state
+modules.modes.safari --> modules.map_data
+modules.modes.safari --> modules.player
+modules.modes.safari --> modules.pokemon_party
+modules.modes.safari --> modules.pokemon
+modules.modes.safari --> modules.memory
+modules.modes.safari --> modules.menuing
+modules.modes.safari --> modules.modes.util.walking
+modules.modes.safari --> modules.items
+modules.modes.safari --> modules.modes.util.higher_level_actions
+modules.modes.safari --> modules.safari_strategy
+modules.modes.safari --> modules.runtime
+modules.modes.safari --> modules.sprites
+modules.modes.safari --> modules.gui.multi_select_window
+modules.modes.spin --> modules.player
+modules.modes.spin --> modules.battle_state
+modules.modes.starters --> modules.context
+modules.modes.starters --> modules.encounter
+modules.modes.starters --> modules.gui.multi_select_window
+modules.modes.starters --> modules.map_data
+modules.modes.starters --> modules.menuing
+modules.modes.starters --> modules.modes.util.walking
+modules.modes.starters --> modules.player
+modules.modes.starters --> modules.pokemon_party
+modules.modes.starters --> modules.runtime
+modules.modes.starters --> modules.save_data
+modules.modes.static_gift_resets --> modules.console
+modules.modes.static_gift_resets --> modules.context
+modules.modes.static_gift_resets --> modules.encounter
+modules.modes.static_gift_resets --> modules.map
+modules.modes.static_gift_resets --> modules.map_data
+modules.modes.static_gift_resets --> modules.map_path
+modules.modes.static_gift_resets --> modules.menuing
+modules.modes.static_gift_resets --> modules.player
+modules.modes.static_gift_resets --> modules.pokemon_party
+modules.modes.static_gift_resets --> modules.save_data
+modules.modes.static_run_away --> modules.context
+modules.modes.static_run_away --> modules.encounter
+modules.modes.static_run_away --> modules.map
+modules.modes.static_run_away --> modules.map_data
+modules.modes.static_run_away --> modules.memory
+modules.modes.static_run_away --> modules.player
+modules.modes.static_soft_resets --> modules.context
+modules.modes.static_soft_resets --> modules.encounter
+modules.modes.static_soft_resets --> modules.map_data
+modules.modes.static_soft_resets --> modules.player
+modules.modes.static_soft_resets --> modules.save_data
+modules.modes.sudowoodo --> modules.context
+modules.modes.sudowoodo --> modules.encounter
+modules.modes.sudowoodo --> modules.map_data
+modules.modes.sudowoodo --> modules.player
+modules.modes.sweet_scent --> modules.battle_state
+modules.modes.sweet_scent --> modules.menuing
+modules.modes.sweet_scent --> modules.player
+modules.modes._asserts --> modules.context
+modules.modes._asserts --> modules.items
+modules.modes._asserts --> modules.map
+modules.modes._asserts --> modules.map_data
+modules.modes._asserts --> modules.player
+modules.modes._asserts --> modules.pokemon
+modules.modes._asserts --> modules.pokemon_party
+modules.modes._asserts --> modules.safari_strategy
+modules.modes._asserts --> modules.save_data
+modules.modes._listeners --> modules.context
+modules.modes._listeners --> modules.debug
+modules.modes._listeners --> modules.encounter
+modules.modes._listeners --> modules.map
+modules.modes._listeners --> modules.map_data
+modules.modes._listeners --> modules.memory
+modules.modes._listeners --> modules.menuing
+modules.modes._listeners --> modules.player
+modules.modes._listeners --> modules.pokemon
+modules.modes._listeners --> modules.pokemon_party
+modules.modes._listeners --> modules.tasks
+modules.modes.util.event_flags_and_vars --> modules.context
+modules.modes.util.event_flags_and_vars --> modules.debug
+modules.modes.util.event_flags_and_vars --> modules.memory
+modules.modes.util.higher_level_actions --> modules.context
+modules.modes.util.higher_level_actions --> modules.debug
+modules.modes.util.higher_level_actions --> modules.map_data
+modules.modes.util.higher_level_actions --> modules.memory
+modules.modes.util.higher_level_actions --> modules.menu_parsers
+modules.modes.util.higher_level_actions --> modules.menuing
+modules.modes.util.higher_level_actions --> modules.modes.util.sleep
+modules.modes.util.higher_level_actions --> modules.player
+modules.modes.util.higher_level_actions --> modules.pokemon_party
+modules.modes.util.higher_level_actions --> modules.region_map
+modules.modes.util.higher_level_actions --> modules.tasks
+modules.modes.util.items --> modules.context
+modules.modes.util.items --> modules.debug
+modules.modes.util.items --> modules.items
+modules.modes.util.items --> modules.memory
+modules.modes.util.items --> modules.menuing
+modules.modes.util.items --> modules.player
+modules.modes.util.items --> modules.pokemon
+modules.modes.util.items --> modules.pokemon_party
+modules.modes.util.items --> modules.tasks
+modules.modes.util.map --> modules.map
+modules.modes.util.map --> modules.map_data
+modules.modes.util.map --> modules.map_path
+modules.modes.util.map --> modules.player
+modules.modes.util.pokecenter_loop --> modules.context
+modules.modes.util.pokecenter_loop --> modules.encounter
+modules.modes.util.pokecenter_loop --> modules.map
+modules.modes.util.pokecenter_loop --> modules.map_data
+modules.modes.util.pokecenter_loop --> modules.player
+modules.modes.util.pokecenter_loop --> modules.pokemon_party
+modules.modes.util.sleep --> modules.debug
+modules.modes.util.soft_reset --> modules.context
+modules.modes.util.soft_reset --> modules.debug
+modules.modes.util.soft_reset --> modules.files
+modules.modes.util.soft_reset --> modules.memory
+modules.modes.util.tasks_scripts --> modules.context
+modules.modes.util.tasks_scripts --> modules.debug
+modules.modes.util.tasks_scripts --> modules.tasks
+modules.modes.util.walking --> modules.context
+modules.modes.util.walking --> modules.debug
+modules.modes.util.walking --> modules.map
+modules.modes.util.walking --> modules.map_data
+modules.modes.util.walking --> modules.map_path
+modules.modes.util.walking --> modules.memory
+modules.modes.util.walking --> modules.roms
+modules.modes.util.walking --> modules.player
+modules.modes.util.walking --> modules.tasks
+modules.modes.util._util_helper --> modules.context
+modules.web.http --> modules.console
+modules.web.http --> modules.context
+modules.web.http --> modules.game
+modules.web.http --> modules.items
+modules.web.http --> modules.libmgba
+modules.web.http --> modules.main
+modules.web.http --> modules.map
+modules.web.http --> modules.map_data
+modules.web.http --> modules.memory
+modules.web.http --> modules.player
+modules.web.http --> modules.pokedex
+modules.web.http --> modules.pokemon_party
+modules.web.http --> modules.pokemon_storage
+modules.web.http --> modules.runtime
+modules.web.http --> modules.state_cache
+modules.web.http --> modules.version
+modules.web.http --> modules.web.http_stream
+modules.web.http_stream --> modules.console
+modules.web.http_stream --> modules.context
+modules.web.http_stream --> modules.libmgba
+modules.web.http_stream --> modules.main
+modules.web.http_stream --> modules.map
+modules.web.http_stream --> modules.memory
+modules.web.http_stream --> modules.player
+modules.web.http_stream --> modules.pokedex
+modules.web.http_stream --> modules.pokemon
+modules.web.http_stream --> modules.pokemon_party
+modules.web.http_stream --> modules.state_cache
+tests.test_battle_evolution --> tests.utility
+tests.test_battle_move_learning --> tests.utility
+tests.test_map --> modules.map
+tests.test_map --> modules.pokemon_party
+tests.test_map --> modules.pokemon
+tests.test_map --> modules.context
+tests.test_map --> modules.profiles
+tests.test_map --> modules.roms
+tests.test_mode_spin --> tests.utility
+tests.test_mode_starter --> tests.utility
+tests.test_pathfinding --> modules.map_data
+tests.test_pathfinding --> modules.player
+tests.test_pathfinding --> tests.utility
+tests.utility --> modules.modes._interface
+tests.utility --> modules.context
+utility.extract_stats_encounters --> modules.console
+utility.extract_stats_encounters --> modules.files
+utility.extract_stats_encounters --> modules.game
+utility.extract_stats_encounters --> modules.map_data
+utility.extract_stats_encounters --> modules.profiles
+utility.extract_stats_encounters --> modules.runtime
+utility.extract_stats_encounters --> modules.stats
+utility.extract_stats_encounters --> modules.version
+@enduml
+
+@startuml sequence_diagram
+actor User
+participant Bot
+participant Memory
+participant Decision
+User -> Bot: start()
+Bot -> Memory: read_stats()
+Memory --> Bot: stats
+Bot -> Decision: check_shiny()
+Decision --> Bot: result
+alt shiny
+Bot -> User: capture()
+else not shiny
+Bot -> Bot: reset()
+end
+@enduml
