@@ -23,6 +23,7 @@ def get_bot_modes() -> list[Type[BotMode]]:
         from .fishing import FishingMode
         from .game_corner import GameCornerMode
         from .item_steal import ItemStealMode
+        from .iv_wild import IVWildMode
         from .kecleon import KecleonMode
         from .level_grind import LevelGrindMode
         from .nugget_bridge import NuggetBridgeMode
@@ -54,6 +55,7 @@ def get_bot_modes() -> list[Type[BotMode]]:
             RoamerResetMode,
             RockSmashMode,
             SafariMode,
+            IVWildMode,
             SpinMode,
             StartersMode,
             StaticRunAway,
