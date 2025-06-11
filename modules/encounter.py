@@ -186,7 +186,6 @@ def log_encounter(encounter_info: EncounterInfo) -> None:
 
     context.message = f"{encounter_info.type.verb.title()} {species_name}{message_action}\n\n{' | '.join(fun_facts)}"
 
-
 def handle_encounter(
     encounter_info: EncounterInfo,
     disable_auto_catch: bool = False,
@@ -195,6 +194,11 @@ def handle_encounter(
     do_not_switch_to_manual: bool = False,
 ) -> BattleAction:
     pokemon = encounter_info.pokemon
+
+    # 🐦 Nuevo bloque para detectar a Pidgey
+    if pokemon.species.name == "Pidgey":
+        print("🟢 HEY MIRA UN PIDGEY!")
+
     match encounter_info.value:
         case EncounterValue.Shiny:
             console.print(f"[bold yellow]Shiny {pokemon.species.name} found![/]")
@@ -214,7 +218,6 @@ def handle_encounter(
         case EncounterValue.Roamer:
             console.print(f"[pink yellow]Roaming {pokemon.species.name} found![/]")
             alert = "Roaming Pokémon found!", f"Encountered a roaming {pokemon.species.name}."
-            # If this is the first time the Roamer is encountered
             if pokemon.species not in get_pokedex().seen_species and context.config.logging.save_pk3.roamer:
                 save_pk3(pokemon)
             is_of_interest = True
@@ -229,7 +232,6 @@ def handle_encounter(
         case EncounterValue.RoamerOnBlockList:
             console.print(f"[bold yellow]{pokemon.species.name} is on the catch block list, skipping encounter...[/]")
             alert = None
-            # If this is the first time the Roamer is encountered
             if pokemon.species not in get_pokedex().seen_species and context.config.logging.save_pk3.roamer:
                 save_pk3(pokemon)
             is_of_interest = False
@@ -272,9 +274,8 @@ def handle_encounter(
     if do_not_log_battle_action:
         encounter_info.battle_action = None
 
-    # During battles the logging is done by `BattleListener` once the encounter is
-    # actually visible (rather than at the start of the battle.)
     if not battle_is_active:
         log_encounter(encounter_info)
 
     return encounter_info.battle_action
+

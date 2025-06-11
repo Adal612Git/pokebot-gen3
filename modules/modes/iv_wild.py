@@ -1,5 +1,4 @@
 from typing import Generator
-
 from rich.prompt import IntPrompt, Prompt
 
 from modules.console import console
