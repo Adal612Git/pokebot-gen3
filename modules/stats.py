@@ -3,7 +3,7 @@ import sys
 import time
 from collections import deque
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from functools import cached_property
 from textwrap import dedent
 from typing import TYPE_CHECKING, Iterable, Optional
@@ -757,6 +757,33 @@ class StatsDatabase:
                 self._encounter_summaries[self.last_encounter.species_id].update_outcome(battle_outcome)
                 self._insert_or_update_encounter_summary(self._encounter_summaries[self.last_encounter.species_id])
             self._commit()
+
+            try:
+                from .csv_logger import registrar_encuentro
+
+                pkm = encounter_info.pokemon
+                local_time = encounter_info.encounter_time + timedelta(hours=-6)
+                registrar_encuentro(
+                    {
+                        "fecha_hora": local_time.strftime("%d/%m/%Y %H:%M"),
+                        "especie": pkm.species.name,
+                        "género": pkm.gender if pkm.gender is not None else "", 
+                        "nivel": pkm.level,
+                        "naturaleza": pkm.nature.name,
+                        "habilidad": pkm.ability.name,
+                        "hp": pkm.ivs.hp,
+                        "atk": pkm.ivs.attack,
+                        "def": pkm.ivs.defence,
+                        "spatk": pkm.ivs.special_attack,
+                        "spdef": pkm.ivs.special_defence,
+                        "spd": pkm.ivs.speed,
+                        "shiny_value": pkm.shiny_value,
+                        "es_shiny": pkm.is_shiny,
+                        "atrapado": battle_outcome is BattleOutcome.Caught,
+                    }
+                )
+            except Exception:
+                pass
 
     def log_pickup_items(self, picked_up_items: list["Item"]) -> None:
         need_updating: set[int] = set()
