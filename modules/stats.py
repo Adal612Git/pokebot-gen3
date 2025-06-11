@@ -3,7 +3,7 @@ import sys
 import time
 from collections import deque
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from functools import cached_property
 from textwrap import dedent
 from typing import TYPE_CHECKING, Iterable, Optional
@@ -762,9 +762,10 @@ class StatsDatabase:
                 from .csv_logger import registrar_encuentro
 
                 pkm = encounter_info.pokemon
+                local_time = encounter_info.encounter_time + timedelta(hours=-6)
                 registrar_encuentro(
                     {
-                        "fecha_hora": encounter_info.encounter_time.strftime("%Y-%m-%d %H:%M:%S"),
+                        "fecha_hora": local_time.strftime("%d/%m/%Y %H:%M"),
                         "especie": pkm.species.name,
                         "género": pkm.gender if pkm.gender is not None else "", 
                         "nivel": pkm.level,
