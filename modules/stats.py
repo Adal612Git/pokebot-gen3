@@ -758,6 +758,32 @@ class StatsDatabase:
                 self._insert_or_update_encounter_summary(self._encounter_summaries[self.last_encounter.species_id])
             self._commit()
 
+            try:
+                from .csv_logger import registrar_encuentro
+
+                pkm = encounter_info.pokemon
+                registrar_encuentro(
+                    {
+                        "fecha_hora": encounter_info.encounter_time.strftime("%Y-%m-%d %H:%M:%S"),
+                        "especie": pkm.species.name,
+                        "género": pkm.gender if pkm.gender is not None else "", 
+                        "nivel": pkm.level,
+                        "naturaleza": pkm.nature.name,
+                        "habilidad": pkm.ability.name,
+                        "hp": pkm.ivs.hp,
+                        "atk": pkm.ivs.attack,
+                        "def": pkm.ivs.defence,
+                        "spatk": pkm.ivs.special_attack,
+                        "spdef": pkm.ivs.special_defence,
+                        "spd": pkm.ivs.speed,
+                        "shiny_value": pkm.shiny_value,
+                        "es_shiny": pkm.is_shiny,
+                        "atrapado": battle_outcome is BattleOutcome.Caught,
+                    }
+                )
+            except Exception:
+                pass
+
     def log_pickup_items(self, picked_up_items: list["Item"]) -> None:
         need_updating: set[int] = set()
         for item in picked_up_items:
