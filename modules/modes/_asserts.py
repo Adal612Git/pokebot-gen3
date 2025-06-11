@@ -201,12 +201,12 @@ def assert_player_has_poke_balls(check_in_saved_game: bool = False) -> None:
     if is_safari_map():
         if get_safari_balls_left() < 15:
             raise BotModeError(out_of_safari_balls_error)
-    elif check_in_saved_game and get_save_data().get_item_bag().number_of_balls_except_master_ball == 0:
-        if get_item_bag().number_of_balls_except_master_ball > 1:
+    elif check_in_saved_game and get_save_data().get_item_bag().number_of_balls == 0:
+        if get_item_bag().number_of_balls > 0:
             raise BotModeError(out_of_poke_balls_error + _error_message_addendum_if_assert_only_failed_in_saved_game)
         else:
             raise BotModeError(out_of_poke_balls_error)
-    elif get_item_bag().number_of_balls_except_master_ball == 0:
+    elif get_item_bag().number_of_balls == 0:
         raise BotModeError(out_of_poke_balls_error)
 
 

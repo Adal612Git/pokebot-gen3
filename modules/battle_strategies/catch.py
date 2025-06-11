@@ -219,9 +219,9 @@ class CatchStrategy(DefaultBattleStrategy):
         opponent = battle_state.opponent.active_battler
         catch_rate_multiplier = 1
         match ball.index:
-            # Master Ball -- we never choose to throw this one, should be the player's choice
+            # Master Ball -- guarantee catch, prefer this if available
             case 1:
-                catch_rate_multiplier = -1
+                catch_rate_multiplier = 255
 
             # Ultra Ball
             case 2:
