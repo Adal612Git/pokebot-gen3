@@ -22,6 +22,7 @@ def get_bot_modes() -> list[Type[BotMode]]:
         from .feebas import FeebasMode
         from .fishing import FishingMode
         from .game_corner import GameCornerMode
+        from .mauville_game_corner_mode import MauvilleGameCornerMode
         from .item_steal import ItemStealMode
         from .iv_wild import IVWildMode
         from .kecleon import KecleonMode
@@ -47,6 +48,7 @@ def get_bot_modes() -> list[Type[BotMode]]:
             FeebasMode,
             FishingMode,
             GameCornerMode,
+            MauvilleGameCornerMode,
             ItemStealMode,
             KecleonMode,
             LevelGrindMode,
