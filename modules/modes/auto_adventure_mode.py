@@ -2,9 +2,9 @@ from enum import Enum, auto
 from typing import Generator
 
 from modules.context import context
-from modules.memory import get_event_flag
+from modules.memory import get_event_flag, read_symbol, unpack_uint32
 from modules.map_data import MapFRLG, PokemonCenter
-from modules.modes._interface import BotMode
+from modules.modes._interface import BotMode, BotModeError
 from modules.modes.util.pokecenter_loop import PokecenterLoopController
 from modules.modes.util import navigate_to
 from modules.battle_state import BattleOutcome
@@ -89,7 +89,19 @@ class AutoAdventureMode(BotMode):
         return self._controller.on_whiteout()
 
     def run(self) -> Generator:
-        self._controller.verify_on_start()
+        try:
+            # If the player is still on the title screen, gMapHeader will be 0
+            if unpack_uint32(read_symbol("gMapHeader", size=4)) == 0:
+                raise BotModeError(
+                    "Game not ready. Load a save state and make sure the player is in-game before starting Auto Adventure."
+                )
+            self._controller.verify_on_start()
+        except Exception as error:
+            if isinstance(error, BotModeError):
+                raise
+            raise BotModeError(
+                "Failed to initialise Auto Adventure. Make sure a save is loaded and the player is on the map."
+            ) from error
         while True:
             # Heal if necessary
             yield from self._controller.run()
