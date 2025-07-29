@@ -16,6 +16,10 @@ from modules.pokemon_party import get_party
 from modules.battle_state import BattleOutcome
 from modules.battle_strategies.level_up import LevelUpLeadBattleStrategy
 
+# Difference in levels between the party and local encounters after which the
+# bot should advance to the next area.
+OVERLEVELED_LEVEL_DIFF = 10
+
 
 class AdventureObjective(Enum):
     GYM1 = auto()
@@ -165,7 +169,9 @@ class SmartAdventureMode(BotMode):
 
             area_max_level = self._area_max_level()
             party_levels = [p.level for p in get_party() if not p.is_egg]
-            if party_levels and all(l > area_max_level + 5 for l in party_levels):
+            if party_levels and all(
+                l > area_max_level + OVERLEVELED_LEVEL_DIFF for l in party_levels
+            ):
                 context.message = f"Equipo sobreleveleado (lvl {max(party_levels)}) para zona '{current_area.map_name}'"
                 print(context.message)
                 index = objective.value - 1
