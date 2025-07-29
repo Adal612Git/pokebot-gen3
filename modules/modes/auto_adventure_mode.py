@@ -24,6 +24,10 @@ from modules.battle_strategies.level_up import LevelUpLeadBattleStrategy
 from modules.battle_strategies.level_balancing import LevelBalancingBattleStrategy
 from modules.battle_strategies.catch import CatchStrategy
 
+# Difference in levels between the party and local encounters after which the
+# bot should advance to the next area.
+OVERLEVELED_LEVEL_DIFF = 10
+
 
 class AdventureObjective(Enum):
     GYM1 = auto()
@@ -226,7 +230,10 @@ class AutoAdventureMode(BotMode):
             area_max = self._area_max_level()
             if party_levels:
                 avg_level = sum(party_levels) / len(party_levels)
-                overleveled = avg_level > area_max + 5 or all(l > area_max + 5 for l in party_levels)
+                overleveled = (
+                    avg_level > area_max + OVERLEVELED_LEVEL_DIFF
+                    or all(l > area_max + OVERLEVELED_LEVEL_DIFF for l in party_levels)
+                )
                 if overleveled:
                     context.message = (
                         f"Equipo sobreleveleado (promedio lvl {avg_level:.1f}) para zona, avanzando al siguiente centro"
