@@ -3,7 +3,10 @@
 from typing import TYPE_CHECKING, Type
 
 from ._interface import BattleAction, BotListener, BotMode, BotModeError, FrameInfo
-from ..plugins import plugin_get_additional_bot_listeners, plugin_get_additional_bot_modes
+from ..plugins import (
+    plugin_get_additional_bot_listeners,
+    plugin_get_additional_bot_modes,
+)
 
 if TYPE_CHECKING:
     from modules.roms import ROM
@@ -39,6 +42,7 @@ def get_bot_modes() -> list[Type[BotMode]]:
         from .static_gift_resets import StaticGiftResetsMode
         from .static_soft_resets import StaticSoftResetsMode
         from .sweet_scent import SweetScentMode
+        from .auto_adventure_mode import AutoAdventureMode
 
         _bot_modes = [
             BerryBlendMode,
@@ -65,6 +69,7 @@ def get_bot_modes() -> list[Type[BotMode]]:
             StaticSoftResetsMode,
             SweetScentMode,
             SudowoodoMode,
+            AutoAdventureMode,
         ]
 
         for mode in plugin_get_additional_bot_modes():

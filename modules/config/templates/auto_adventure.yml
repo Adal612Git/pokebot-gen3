@@ -1,0 +1,8 @@
+# Configuration options for AutoAdventureMode
+# This file contains only a few basic settings. Adjust as needed.
+
+# HP threshold at which the bot should go heal
+heal_threshold: 30
+
+# Whether to attempt to catch new Pokémon species automatically
+catch_new_species: true
