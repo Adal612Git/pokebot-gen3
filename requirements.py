@@ -14,6 +14,7 @@ libmgba_ver = "0.2.0"
 required_modules = [
     "confz==2.0.1",
     "numpy~=2.1.0",
+    "matplotlib~=3.8.4",
     "setuptools",
     "ruamel.yaml~=0.18.2",
     "pypresence~=4.3.0",
