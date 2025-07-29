@@ -2,13 +2,26 @@ from enum import Enum, auto
 from typing import Generator
 
 from modules.context import context
-from modules.memory import get_event_flag, read_symbol, unpack_uint32
+from modules.memory import (
+    get_event_flag,
+    read_symbol,
+    unpack_uint32,
+)
 from modules.map_data import MapFRLG, PokemonCenter
 from modules.modes._interface import BotMode, BotModeError
 from modules.modes.util.pokecenter_loop import PokecenterLoopController
 from modules.modes.util import navigate_to
+from modules.modes.util.higher_level_actions import buy_in_shop, talk_to_npc
+from modules.items import get_item_bag, get_item_by_name
+from modules.pokedex import get_pokedex
+from modules.pokemon_party import get_party
+from modules.map import (
+    get_effective_encounter_rates_for_current_map,
+    get_map_data_for_current_position,
+)
 from modules.battle_state import BattleOutcome
 from modules.battle_strategies.level_up import LevelUpLeadBattleStrategy
+from modules.battle_strategies.catch import CatchStrategy
 
 
 class AdventureObjective(Enum):
@@ -68,6 +81,29 @@ GYM_COORDS = [
     (4, 7),  # Viridian Gym
 ]
 
+# Placeholder mart maps and coordinates for restocking Poké Balls
+MART_MAPS = [
+    MapFRLG.PEWTER_CITY_MART,
+    MapFRLG.CERULEAN_CITY_MART,
+    MapFRLG.VERMILION_CITY_MART,
+    MapFRLG.CELADON_CITY_MART,
+    MapFRLG.FUCHSIA_CITY_MART,
+    MapFRLG.SAFFRON_CITY_MART,
+    MapFRLG.CINNABAR_ISLAND_MART,
+    MapFRLG.VIRIDIAN_CITY_MART,
+]
+
+MART_COORDS = [
+    (4, 7),
+    (4, 7),
+    (4, 7),
+    (4, 7),
+    (4, 7),
+    (4, 7),
+    (4, 7),
+    (4, 7),
+]
+
 
 class AutoAdventureMode(BotMode):
     @staticmethod
@@ -79,7 +115,59 @@ class AutoAdventureMode(BotMode):
         self._controller = PokecenterLoopController(focus_on_lead_pokemon=True)
         self._battle_strategy = LevelUpLeadBattleStrategy
 
+    def _area_max_level(self) -> int:
+        encounters = get_effective_encounter_rates_for_current_map()
+        if encounters is None:
+            return 0
+        max_level = 0
+        for e in (
+            encounters.land_encounters
+            + encounters.surf_encounters
+            + encounters.rock_smash_encounters
+            + encounters.old_rod_encounters
+            + encounters.good_rod_encounters
+            + encounters.super_rod_encounters
+        ):
+            max_level = max(max_level, e.max_level)
+        return max_level
+
+    def _missing_species_in_area(self) -> list[str]:
+        pokedex = get_pokedex()
+        encounters = get_effective_encounter_rates_for_current_map()
+        if encounters is None:
+            return []
+        missing = []
+        for e in (
+            encounters.land_encounters
+            + encounters.surf_encounters
+            + encounters.rock_smash_encounters
+            + encounters.old_rod_encounters
+            + encounters.good_rod_encounters
+            + encounters.super_rod_encounters
+        ):
+            if e.species not in pokedex.owned_species:
+                missing.append(e.species.name)
+        return missing
+
+    def _count_pokeballs(self) -> int:
+        return sum(slot.quantity for slot in get_item_bag().poke_balls)
+
+    def _restock_pokeballs(self, index: int) -> Generator:
+        mart_map = MART_MAPS[index]
+        mart_coords = MART_COORDS[index]
+        # Move to the mart and talk to the shopkeeper
+        yield from navigate_to(mart_map, mart_coords, run=True, avoid_encounters=False)
+        yield from talk_to_npc(1)
+        yield from buy_in_shop([(get_item_by_name("Poké Ball"), 10)])
+
     def on_battle_started(self, encounter):
+        if (
+            encounter is not None
+            and encounter.pokemon.species not in get_pokedex().owned_species
+            and self._count_pokeballs() > 0
+        ):
+            print("Pensando...")
+            return CatchStrategy()
         return self._battle_strategy()
 
     def on_battle_ended(self, outcome: BattleOutcome) -> None:
@@ -103,8 +191,13 @@ class AutoAdventureMode(BotMode):
                 "Failed to initialise Auto Adventure. Make sure a save is loaded and the player is on the map."
             ) from error
         while True:
+            print("Pensando...")
             # Heal if necessary
             yield from self._controller.run()
+
+            if self._count_pokeballs() == 0:
+                yield from self._restock_pokeballs(self._get_next_objective().value - 1)
+                continue
 
             objective = self._get_next_objective()
             if objective is AdventureObjective.DONE:
@@ -116,12 +209,29 @@ class AutoAdventureMode(BotMode):
             gym_map = GYM_MAPS[index]
             gym_coords = GYM_COORDS[index]
 
+            missing_here = self._missing_species_in_area()
+            if missing_here:
+                context.message = (
+                    "Veo Pokémon nuevos en esta zona: " + ", ".join(missing_here) + ". Intentando capturarlos..."
+                )
+                print(context.message)
+                yield from self._controller.run(lambda: len(self._missing_species_in_area()) == 0)
+                continue
+
+            party_levels = [p.level for p in get_party() if not p.is_egg]
+            area_max = self._area_max_level()
+            if party_levels and all(l > area_max + 5 for l in party_levels):
+                context.message = f"Equipo sobreleveleado (lvl {max(party_levels)}) para zona, avanzando al siguiente centro"
+                print(context.message)
+                yield from navigate_to(*center.value, run=True, avoid_encounters=False)
+                continue
+
             # Travel to the city's Pokémon Center first
-            yield from navigate_to(*center.value)
+            yield from navigate_to(*center.value, run=True, avoid_encounters=False)
             yield from self._controller.run()
 
             # Navigate to the gym entrance
-            yield from navigate_to(gym_map, gym_coords)
+            yield from navigate_to(gym_map, gym_coords, run=True, avoid_encounters=False)
             # Wait until badge is obtained (handled by battle strategy)
             while not get_event_flag(BADGE_FLAGS[index]):
                 yield
