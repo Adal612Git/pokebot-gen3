@@ -21,6 +21,7 @@ from modules.map import (
 )
 from modules.battle_state import BattleOutcome
 from modules.battle_strategies.level_up import LevelUpLeadBattleStrategy
+from modules.battle_strategies.level_balancing import LevelBalancingBattleStrategy
 from modules.battle_strategies.catch import CatchStrategy
 
 
@@ -113,7 +114,8 @@ class AutoAdventureMode(BotMode):
     def __init__(self):
         super().__init__()
         self._controller = PokecenterLoopController(focus_on_lead_pokemon=True)
-        self._battle_strategy = LevelUpLeadBattleStrategy
+        # Use a strategy that keeps the whole party leveled
+        self._battle_strategy = LevelBalancingBattleStrategy
 
     def _area_max_level(self) -> int:
         encounters = get_effective_encounter_rates_for_current_map()
@@ -200,6 +202,8 @@ class AutoAdventureMode(BotMode):
                 continue
 
             objective = self._get_next_objective()
+            context.message = f"Objetivo actual: {objective.name}"
+            print(context.message)
             if objective is AdventureObjective.DONE:
                 context.set_manual_mode()
                 return
@@ -220,11 +224,16 @@ class AutoAdventureMode(BotMode):
 
             party_levels = [p.level for p in get_party() if not p.is_egg]
             area_max = self._area_max_level()
-            if party_levels and all(l > area_max + 5 for l in party_levels):
-                context.message = f"Equipo sobreleveleado (lvl {max(party_levels)}) para zona, avanzando al siguiente centro"
-                print(context.message)
-                yield from navigate_to(*center.value, run=True, avoid_encounters=False)
-                continue
+            if party_levels:
+                avg_level = sum(party_levels) / len(party_levels)
+                overleveled = avg_level > area_max + 5 or all(l > area_max + 5 for l in party_levels)
+                if overleveled:
+                    context.message = (
+                        f"Equipo sobreleveleado (promedio lvl {avg_level:.1f}) para zona, avanzando al siguiente centro"
+                    )
+                    print(context.message)
+                    yield from navigate_to(*center.value, run=True, avoid_encounters=False)
+                    continue
 
             # Travel to the city's Pokémon Center first
             yield from navigate_to(*center.value, run=True, avoid_encounters=False)
